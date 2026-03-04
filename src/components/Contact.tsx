@@ -58,7 +58,7 @@ export default function Contact() {
           className="inline-flex items-center gap-3 px-10 py-4 bg-amber-400 text-black font-semibold rounded-full hover:bg-amber-300 transition-all duration-300 hover:scale-105 active:scale-95 text-lg mb-16"
         >
           <Mail size={20} />
-          Contactar por email
+          Send me an email
         </motion.a>
 
         {/* Socials */}
