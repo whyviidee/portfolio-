@@ -24,7 +24,7 @@ export const projects: Project[] = [
       "Full-stack mobile platform built for the DJ ecosystem — booking, events, backstage access, AI-powered tools, and real-time communities.",
     tech: ["Expo", "React Native", "TypeScript", "Supabase", "PostgreSQL", "Edge Functions", "OpenAI"],
     color: "#F59E0B",
-    year: "2025",
+    year: "2025 — In Progress",
     problem:
       "DJs in Mozambique had no centralized platform to manage bookings, share events, and connect with fans. Information was scattered across WhatsApp groups and Instagram.",
     solution:
@@ -41,7 +41,7 @@ export const projects: Project[] = [
       "Design concept for a native mobile experience for Lisboa Rio club, exploring loyalty rewards, event discovery, QR tickets, referral mechanics, and engagement-driven UX.",
     tech: ["Expo", "React Native", "TypeScript", "Figma"],
     color: "#3B82F6",
-    year: "2025",
+    year: "2026 — Proposal",
     problem: "Clubs rely on Instagram and third-party platforms with no direct loyalty channel or branded experience for their regulars.",
     solution:
       "Designed a native app concept with loyalty point system, event browsing, QR ticket scanning, tier-based benefits, and referral mechanics.",
@@ -56,7 +56,7 @@ export const projects: Project[] = [
       "UI/UX redesign concept for a music app, exploring dark glassmorphism aesthetics, micro-interactions, and fluid navigation patterns.",
     tech: ["Figma", "React Native", "Framer Motion", "Glassmorphism"],
     color: "#8B5CF6",
-    year: "2024",
+    year: "2026 — Proposal",
     problem: "Music apps feel generic. Most follow the same tired Spotify-clone layout with no personality.",
     solution:
       "Explored a bold dark aesthetic with glassmorphism, animated waveforms, gesture-based navigation, and a unique visual identity.",
@@ -86,7 +86,7 @@ export const projects: Project[] = [
       "Fast static website for DJ Dagô's booking and event presence, with upcoming events listing and direct WhatsApp booking CTA.",
     tech: ["HTML", "CSS", "JavaScript"],
     color: "#F97316",
-    year: "2024",
+    year: "2025",
     problem: "As a DJ active across Portugal and Mozambique, I needed a direct booking channel beyond Instagram.",
     solution: "Built a minimal, fast static site with event listings, booking info, and direct WhatsApp CTA. No frameworks, no bloat.",
     result: "Live booking page for DJ Dagô, clean dark aesthetic matching the brand, used for direct bookings and event discovery.",
@@ -100,7 +100,7 @@ export const projects: Project[] = [
       "Clean marketing website for a Lisbon tourism company, with tour listings, booking inquiries, and multilingual support.",
     tech: ["Next.js", "Tailwind CSS", "TypeScript", "Vercel"],
     color: "#10B981",
-    year: "2024",
+    year: "2026 — Proposal",
     problem: "The agency had an outdated website that wasn't converting visitors into bookings.",
     solution: "Built a fast, modern site with clear tour pages, contact forms, and optimized for SEO and performance.",
     result: "Deployed on Vercel with 95+ Lighthouse score, multilingual routes, and a clean conversion-focused design.",
@@ -114,7 +114,7 @@ export const projects: Project[] = [
       "Discord bot powered by Claude API with context-aware multi-turn conversations, server moderation tools, and custom slash commands.",
     tech: ["Node.js", "Discord.js", "Claude API", "TypeScript"],
     color: "#6366F1",
-    year: "2024",
+    year: "2025",
     problem: "Discord communities need intelligent bots that actually understand context, not just pattern-match commands.",
     solution:
       "Built a bot using Claude API for multi-turn conversations with memory, custom moderation workflows, and extensible command system.",

@@ -45,9 +45,9 @@ export default function Contact() {
           transition={{ duration: 0.7, delay: 0.25 }}
           className="text-gray-400 text-lg mb-12 max-w-2xl mx-auto leading-relaxed"
         >
-          Tens uma ideia, um projecto, ou algo que queres construir?
-          Fala comigo — juntos tornamos isso realidade.
-          Aberto a freelance, colaborações, e novos desafios.
+          Got an idea, a project, or something you want to build?
+          Let&apos;s talk — together we make it happen.
+          Open to freelance, collaborations, and new challenges.
         </motion.p>
 
         <motion.a

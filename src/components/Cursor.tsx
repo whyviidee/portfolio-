@@ -1,15 +1,19 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 
 export default function Cursor() {
+  const [isTouch, setIsTouch] = useState(true);
   const mouseX = useMotionValue(-100);
   const mouseY = useMotionValue(-100);
   const ringX = useSpring(mouseX, { stiffness: 100, damping: 18 });
   const ringY = useSpring(mouseY, { stiffness: 100, damping: 18 });
 
   useEffect(() => {
+    // Hide on touch/mobile devices
+    setIsTouch(window.matchMedia("(pointer: coarse)").matches);
+
     const move = (e: MouseEvent) => {
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
@@ -17,6 +21,8 @@ export default function Cursor() {
     window.addEventListener("mousemove", move);
     return () => window.removeEventListener("mousemove", move);
   }, [mouseX, mouseY]);
+
+  if (isTouch) return null;
 
   return (
     <>
