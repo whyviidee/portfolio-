@@ -78,6 +78,21 @@ export const projects: Project[] = [
     result: "Used by 12 members. Xitique tracking, trip coordination, and AI-powered social games all in one place.",
   },
   {
+    slug: "txx-native",
+    title: "TxxTxxTxx Native",
+    type: "Mobile App",
+    description: "Native mobile version of the TxxTxxTxx group app — biometrics, notifications, and offline-first.",
+    longDescription:
+      "React Native port of the TxxTxxTxx web app, bringing the full friend group experience to iOS and Android with native features like biometric auth, push notifications, and a polished native UI.",
+    tech: ["Expo", "React Native", "TypeScript", "InstantDB", "Expo Router", "Biometrics"],
+    color: "#C084FC",
+    year: "2026 — In Progress",
+    problem: "The web app worked well but lacked native capabilities — no push notifications, no biometric login, and no offline access for the group.",
+    solution:
+      "Rebuilt the full experience as a native app using Expo SDK 55, adding Face ID/fingerprint auth, push notifications, image picker, secure storage, and Expo Router navigation.",
+    result: "Native app with home dashboard, xitique wallet, trip management, gallery, games, events calendar, and voting — all with native performance and biometric security.",
+  },
+  {
     slug: "dj-webpage",
     title: "DJ Dagô Website",
     type: "Website",
