@@ -124,32 +124,17 @@ export const projects: Project[] = [
   },
   {
     slug: "txx-app",
-    title: "TxxTxxTxx",
-    type: "Web App",
+    title: "TxxTxxTxx App",
+    type: "Mobile App",
     description: "Private social app for a friend group — xitique tracker, trips, and AI games.",
     longDescription:
-      "Mobile-first web app for a Mozambican friend group of 12. Manages their xitique (rotating savings), trip planning, AI-powered roasts, and social games.",
-    tech: ["React", "TypeScript", "Vite", "OpenAI API"],
-    color: "#A855F7",
-    year: "2025",
-    problem: "Managing a xitique, tracking who paid, and coordinating group trips across WhatsApp was chaos.",
-    solution:
-      "Built a private app with rotating payment schedules, MB WAY shortcuts, trip modules, member profiles, and AI roast generator — Mozambican context built-in.",
-    result: "Used by 12 members. Xitique tracking, trip coordination, and AI-powered social games all in one place.",
-  },
-  {
-    slug: "txx-native",
-    title: "TxxTxxTxx Native",
-    type: "Mobile App",
-    description: "Native mobile version of the TxxTxxTxx group app — biometrics, notifications, and offline-first.",
-    longDescription:
-      "React Native port of the TxxTxxTxx web app, bringing the full friend group experience to iOS and Android with native features like biometric auth, push notifications, and a polished native UI.",
+      "Native mobile app for a Mozambican friend group of 12. Manages their xitique (rotating savings), trip planning, AI-powered roasts, and social games — with biometric auth and push notifications.",
     tech: ["Expo", "React Native", "TypeScript", "InstantDB", "Expo Router", "Biometrics"],
     color: "#C084FC",
     year: "2026 — In Progress",
-    problem: "The web app worked well but lacked native capabilities — no push notifications, no biometric login, and no offline access for the group.",
+    problem: "Managing a xitique, tracking who paid, and coordinating group trips across WhatsApp was chaos.",
     solution:
-      "Rebuilt the full experience as a native app using Expo SDK 55, adding Face ID/fingerprint auth, push notifications, image picker, secure storage, and Expo Router navigation.",
+      "Built a native app with rotating payment schedules, MB WAY shortcuts, trip modules, member profiles, AI roast generator, Face ID/fingerprint auth, and push notifications — Mozambican context built-in.",
     result: "Native app with home dashboard, xitique wallet, trip management, gallery, games, events calendar, and voting — all with native performance and biometric security.",
   },
 ];
