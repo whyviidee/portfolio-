@@ -33,6 +33,35 @@ export const projects: Project[] = [
       "40+ screens, 20 database tables, 8 edge functions, AI multi-event import, communities with real-time messaging, and press kit generation.",
   },
   {
+    slug: "discord-bot-ai",
+    title: "Discord AI Bot",
+    type: "Bot / API",
+    description: "AI-powered Discord bot — context-aware conversations, moderation, and commands.",
+    longDescription:
+      "Discord bot powered by Claude API with context-aware multi-turn conversations, server moderation tools, and custom slash commands.",
+    tech: ["Node.js", "Discord.js", "Claude API", "TypeScript"],
+    color: "#6366F1",
+    year: "2025",
+    problem: "Discord communities need intelligent bots that actually understand context, not just pattern-match commands.",
+    solution:
+      "Built a bot using Claude API for multi-turn conversations with memory, custom moderation workflows, and extensible command system.",
+    result: "Deployed bot handling multi-turn AI conversations, server moderation, and 10+ custom slash commands.",
+  },
+  {
+    slug: "dj-webpage",
+    title: "DJ Dagô Website",
+    type: "Website",
+    description: "Personal booking website for DJ Dagô — events, contact, and direct booking.",
+    longDescription:
+      "Fast static website for DJ Dagô's booking and event presence, with upcoming events listing and direct WhatsApp booking CTA.",
+    tech: ["HTML", "CSS", "JavaScript"],
+    color: "#F97316",
+    year: "2025",
+    problem: "As a DJ active across Portugal and Mozambique, I needed a direct booking channel beyond Instagram.",
+    solution: "Built a minimal, fast static site with event listings, booking info, and direct WhatsApp CTA. No frameworks, no bloat.",
+    result: "Live booking page for DJ Dagô, clean dark aesthetic matching the brand, used for direct bookings and event discovery.",
+  },
+  {
     slug: "lisboa-rio",
     title: "Lisboa Rio",
     type: "Design Concept",
@@ -46,6 +75,37 @@ export const projects: Project[] = [
     solution:
       "Designed a native app concept with loyalty point system, event browsing, QR ticket scanning, tier-based benefits, and referral mechanics.",
     result: "Full design concept with 10+ screens — login, events, QR tickets, virtual card, loyalty program, and engagement features.",
+  },
+  {
+    slug: "musictolegal",
+    title: "MUSICTOLEGAL",
+    type: "Web App",
+    description: "DJ library scanner — identifies tracks via audio fingerprinting and generates a legal purchase shopping list.",
+    longDescription:
+      "Full-stack tool for DJs to scan their music library, identify every track using acoustic fingerprinting and multiple fallback methods, and get direct purchase links to legalize their collection for ASAE inspections.",
+    tech: ["Python", "Flask", "AcoustID", "MusicBrainz", "iTunes API", "Chromaprint"],
+    color: "#1DB954",
+    year: "2026",
+    problem:
+      "In Portugal, DJs need proof of purchase for every track they play publicly. Manually identifying hundreds of downloaded tracks and finding where to buy each one is impossible.",
+    solution:
+      "Built an 8-phase scan pipeline — acoustic fingerprinting, API identification, metadata matching, iTunes filename search, mashup/remix detection, and store link verification. Web UI with per-track rescan, filters, and smart store buttons.",
+    result:
+      "Scans entire DJ libraries, identifies 90%+ of tracks across multiple methods, generates verified purchase links for Beatport, Traxsource, Bandcamp, and iTunes. Detects remixes, mashups, and DJ mixes automatically.",
+  },
+  {
+    slug: "rna-tours",
+    title: "RNA Tours",
+    type: "Website",
+    description: "Tourism website for a Lisbon-based travel agency — clean, fast, multilingual.",
+    longDescription:
+      "Clean marketing website for a Lisbon tourism company, with tour listings, booking inquiries, and multilingual support.",
+    tech: ["Next.js", "Tailwind CSS", "TypeScript", "Vercel"],
+    color: "#10B981",
+    year: "2026 — Proposal",
+    problem: "The agency had an outdated website that wasn't converting visitors into bookings.",
+    solution: "Built a fast, modern site with clear tour pages, contact forms, and optimized for SEO and performance.",
+    result: "Deployed on Vercel with 95+ Lighthouse score, multilingual routes, and a clean conversion-focused design.",
   },
   {
     slug: "tokyo-jamaica",
@@ -91,65 +151,5 @@ export const projects: Project[] = [
     solution:
       "Rebuilt the full experience as a native app using Expo SDK 55, adding Face ID/fingerprint auth, push notifications, image picker, secure storage, and Expo Router navigation.",
     result: "Native app with home dashboard, xitique wallet, trip management, gallery, games, events calendar, and voting — all with native performance and biometric security.",
-  },
-  {
-    slug: "dj-webpage",
-    title: "DJ Dagô Website",
-    type: "Website",
-    description: "Personal booking website for DJ Dagô — events, contact, and direct booking.",
-    longDescription:
-      "Fast static website for DJ Dagô's booking and event presence, with upcoming events listing and direct WhatsApp booking CTA.",
-    tech: ["HTML", "CSS", "JavaScript"],
-    color: "#F97316",
-    year: "2025",
-    problem: "As a DJ active across Portugal and Mozambique, I needed a direct booking channel beyond Instagram.",
-    solution: "Built a minimal, fast static site with event listings, booking info, and direct WhatsApp CTA. No frameworks, no bloat.",
-    result: "Live booking page for DJ Dagô, clean dark aesthetic matching the brand, used for direct bookings and event discovery.",
-  },
-  {
-    slug: "rna-tours",
-    title: "RNA Tours",
-    type: "Website",
-    description: "Tourism website for a Lisbon-based travel agency — clean, fast, multilingual.",
-    longDescription:
-      "Clean marketing website for a Lisbon tourism company, with tour listings, booking inquiries, and multilingual support.",
-    tech: ["Next.js", "Tailwind CSS", "TypeScript", "Vercel"],
-    color: "#10B981",
-    year: "2026 — Proposal",
-    problem: "The agency had an outdated website that wasn't converting visitors into bookings.",
-    solution: "Built a fast, modern site with clear tour pages, contact forms, and optimized for SEO and performance.",
-    result: "Deployed on Vercel with 95+ Lighthouse score, multilingual routes, and a clean conversion-focused design.",
-  },
-  {
-    slug: "musictolegal",
-    title: "MUSICTOLEGAL",
-    type: "Web App",
-    description: "DJ library scanner — identifies tracks via audio fingerprinting and generates a legal purchase shopping list.",
-    longDescription:
-      "Full-stack tool for DJs to scan their music library, identify every track using acoustic fingerprinting and multiple fallback methods, and get direct purchase links to legalize their collection for ASAE inspections.",
-    tech: ["Python", "Flask", "AcoustID", "MusicBrainz", "iTunes API", "Chromaprint"],
-    color: "#1DB954",
-    year: "2026",
-    problem:
-      "In Portugal, DJs need proof of purchase for every track they play publicly. Manually identifying hundreds of downloaded tracks and finding where to buy each one is impossible.",
-    solution:
-      "Built an 8-phase scan pipeline — acoustic fingerprinting, API identification, metadata matching, iTunes filename search, mashup/remix detection, and store link verification. Web UI with per-track rescan, filters, and smart store buttons.",
-    result:
-      "Scans entire DJ libraries, identifies 90%+ of tracks across multiple methods, generates verified purchase links for Beatport, Traxsource, Bandcamp, and iTunes. Detects remixes, mashups, and DJ mixes automatically.",
-  },
-  {
-    slug: "discord-bot-ai",
-    title: "Discord AI Bot",
-    type: "Bot / API",
-    description: "AI-powered Discord bot — context-aware conversations, moderation, and commands.",
-    longDescription:
-      "Discord bot powered by Claude API with context-aware multi-turn conversations, server moderation tools, and custom slash commands.",
-    tech: ["Node.js", "Discord.js", "Claude API", "TypeScript"],
-    color: "#6366F1",
-    year: "2025",
-    problem: "Discord communities need intelligent bots that actually understand context, not just pattern-match commands.",
-    solution:
-      "Built a bot using Claude API for multi-turn conversations with memory, custom moderation workflows, and extensible command system.",
-    result: "Deployed bot handling multi-turn AI conversations, server moderation, and 10+ custom slash commands.",
   },
 ];
