@@ -121,6 +121,23 @@ export const projects: Project[] = [
     result: "Deployed on Vercel with 95+ Lighthouse score, multilingual routes, and a clean conversion-focused design.",
   },
   {
+    slug: "musictolegal",
+    title: "MUSICTOLEGAL",
+    type: "Web App",
+    description: "DJ library scanner — identifies tracks via audio fingerprinting and generates a legal purchase shopping list.",
+    longDescription:
+      "Full-stack tool for DJs to scan their music library, identify every track using acoustic fingerprinting and multiple fallback methods, and get direct purchase links to legalize their collection for ASAE inspections.",
+    tech: ["Python", "Flask", "AcoustID", "MusicBrainz", "iTunes API", "Chromaprint"],
+    color: "#1DB954",
+    year: "2026",
+    problem:
+      "In Portugal, DJs need proof of purchase for every track they play publicly. Manually identifying hundreds of downloaded tracks and finding where to buy each one is impossible.",
+    solution:
+      "Built an 8-phase scan pipeline — acoustic fingerprinting, API identification, metadata matching, iTunes filename search, mashup/remix detection, and store link verification. Web UI with per-track rescan, filters, and smart store buttons.",
+    result:
+      "Scans entire DJ libraries, identifies 90%+ of tracks across multiple methods, generates verified purchase links for Beatport, Traxsource, Bandcamp, and iTunes. Detects remixes, mashups, and DJ mixes automatically.",
+  },
+  {
     slug: "discord-bot-ai",
     title: "Discord AI Bot",
     type: "Bot / API",
