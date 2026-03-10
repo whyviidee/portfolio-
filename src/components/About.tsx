@@ -11,9 +11,9 @@ const skills = [
 ];
 
 const stats = [
-  { value: "6+", label: "Projects shipped" },
-  { value: "3+", label: "Years building" },
-  { value: "2", label: "Lives lived" },
+  { value: "8", label: "Projects built" },
+  { value: "DJ", label: "By night" },
+  { value: "Dev", label: "By day" },
 ];
 
 export default function About() {
@@ -50,21 +50,23 @@ export default function About() {
             transition={{ duration: 0.7, delay: 0.2 }}
           >
             <p className="text-gray-300 text-lg leading-relaxed mb-6">
-              DJ Dagô by night, full-stack developer by day. Born in Mozambique, built in Portugal —
-              two lives running in parallel, both pushing forward.
+              DJ Dagô by night, building software by day. Born in Mozambique, based in Portugal.
+              Two paths running in parallel.
             </p>
             <p className="text-gray-400 leading-relaxed mb-6">
               I studied Computer Engineering at IST — Instituto Superior Técnico, Lisbon. Worked at
-              Accenture and Teleperformance. Then the decks called louder: I stepped away from tech
-              and spent years building a DJ career, playing clubs across Portugal and Mozambique,
-              one set at a time.
+              Accenture and Teleperformance. Then the decks called louder and I spent years building
+              a DJ career across Portugal and Mozambique.
+            </p>
+            <p className="text-gray-400 leading-relaxed mb-6">
+              Recently I came back to code with a different mindset — building things I actually need
+              and care about. An app for DJs. A tool to legalize my music library. A private app for
+              my friend group. Everything here was built from real problems, not tutorials.
             </p>
             <p className="text-gray-400 leading-relaxed mb-10">
-              Eventually the spark came back. I returned to coding — this time building things I
-              actually cared about. AgendaDJ. Tools for artists. Products from scratch.
-              The DJ career never stopped — I just added a second lane. This portfolio is proof of
-              that, and it keeps growing. Full stack: mobile with Expo, web with Next.js, backends
-              with NestJS and Supabase, AI integrations. Open to freelance and collaborations.
+              I&apos;m not a senior developer with 10 years of experience. I&apos;m someone who builds fast,
+              learns by shipping, and puts real products out there. This portfolio keeps growing.
+              Open to freelance, collaborations, and interesting problems.
             </p>
 
             {/* Stats */}
