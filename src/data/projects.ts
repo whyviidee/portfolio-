@@ -209,7 +209,7 @@ export const projects: Project[] = [
     slug: "ika-dogwear",
     title: "Ika Dogwear",
     type: "E-Commerce",
-    liveUrl: "https://ika-dogwear.vercel.app",
+    liveUrl: "https://ikadogwear.com",
     description: "Handcrafted dog collars and leashes — full e-commerce with admin CMS and order management.",
     longDescription:
       "Full e-commerce platform for a Portuguese artisan brand selling handcrafted paracord and biothane dog accessories. Features a custom admin CMS with inline editing, product management, order tracking, and SEO optimization.",
