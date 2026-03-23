@@ -209,6 +209,7 @@ export const projects: Project[] = [
     slug: "ika-dogwear",
     title: "Ika Dogwear",
     type: "E-Commerce",
+    liveUrl: "https://ika-dogwear.vercel.app",
     description: "Handcrafted dog collars and leashes — full e-commerce with admin CMS and order management.",
     longDescription:
       "Full e-commerce platform for a Portuguese artisan brand selling handcrafted paracord and biothane dog accessories. Features a custom admin CMS with inline editing, product management, order tracking, and SEO optimization.",
@@ -285,7 +286,6 @@ export const projects: Project[] = [
     tech: ["Python", "PyQt6", "Spotipy", "yt-dlp", "Mutagen", "FFmpeg"],
     color: "#1DB954",
     year: "2025",
-    githubUrl: "https://github.com/whyviidee/SONGER",
     problem:
       "DJs and music collectors need a single tool to browse their library, preview tracks, discover new music, and download — without switching between 5 different apps.",
     solution:
