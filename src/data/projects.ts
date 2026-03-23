@@ -103,7 +103,7 @@ export const projects: Project[] = [
   },
   {
     slug: "musictolegal",
-    title: "MUSICTOLEGAL",
+    title: "MusicToLegal",
     type: "Web App",
     description: "DJ library scanner — identifies tracks via audio fingerprinting and generates a legal purchase shopping list.",
     longDescription:
@@ -210,7 +210,7 @@ export const projects: Project[] = [
   },
   {
     slug: "ika-dogwear",
-    title: "Ika Dogwear",
+    title: "IKA Dogwear",
     type: "E-Commerce",
     liveUrl: "https://ikadogwear.com",
     description: "Handcrafted dog collars and leashes — full e-commerce with admin CMS and order management.",
@@ -281,7 +281,7 @@ export const projects: Project[] = [
   },
   {
     slug: "songer",
-    title: "SONGER",
+    title: "Songer",
     type: "Desktop App",
     liveUrl: "https://songerapp.me",
     description: "Music manager for DJs and collectors — library browser, player, Spotify integration, and downloads.",
