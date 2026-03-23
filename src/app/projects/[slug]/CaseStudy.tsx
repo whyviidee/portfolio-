@@ -2,8 +2,8 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowLeft, ExternalLink, Github } from "lucide-react";
-import type { Project } from "@/data/projects";
+import { ArrowLeft, ArrowRight, ExternalLink, Github } from "lucide-react";
+import { projects, type Project } from "@/data/projects";
 
 const fadeUp = {
   initial: { opacity: 0, y: 30 },
@@ -11,7 +11,16 @@ const fadeUp = {
   transition: { duration: 0.7 },
 } as const;
 
+function getAdjacentProjects(slug: string) {
+  const idx = projects.findIndex((p) => p.slug === slug);
+  const prev = projects[(idx - 1 + projects.length) % projects.length];
+  const next = projects[(idx + 1) % projects.length];
+  return { prev, next };
+}
+
 export default function CaseStudy({ project }: { project: Project }) {
+  const { prev, next } = getAdjacentProjects(project.slug);
+
   return (
     <main className="min-h-screen pt-32 pb-24 px-6">
       <div className="max-w-4xl mx-auto">
@@ -32,7 +41,7 @@ export default function CaseStudy({ project }: { project: Project }) {
         </motion.div>
 
         {/* Header */}
-        <motion.div {...fadeUp} className="mb-16">
+        <motion.div {...fadeUp} className="mb-12">
           <div className="flex items-center gap-3 mb-4">
             <span
               className="text-xs px-3 py-1 rounded-full font-medium"
@@ -46,6 +55,30 @@ export default function CaseStudy({ project }: { project: Project }) {
           <p className="text-xl text-gray-300 leading-relaxed max-w-2xl">{project.longDescription}</p>
         </motion.div>
 
+        {/* Highlights / Stats */}
+        {project.highlights.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-12"
+          >
+            {project.highlights.map((h, i) => (
+              <motion.div
+                key={h.label}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.3 + i * 0.08 }}
+                className="text-center p-5 rounded-2xl border border-white/5"
+                style={{ background: "rgba(22, 27, 39, 0.5)" }}
+              >
+                <div className="text-2xl font-bold text-amber-400 mb-1">{h.value}</div>
+                <div className="text-xs text-gray-500 uppercase tracking-wider">{h.label}</div>
+              </motion.div>
+            ))}
+          </motion.div>
+        )}
+
         {/* Divider */}
         <motion.div
           initial={{ scaleX: 0 }}
@@ -55,7 +88,7 @@ export default function CaseStudy({ project }: { project: Project }) {
           className="h-px origin-left mb-16"
         />
 
-        {/* Problem → Solution → Result */}
+        {/* Problem / Solution / Result */}
         <div className="grid md:grid-cols-3 gap-8 mb-20">
           {[
             { label: "Problem", content: project.problem, num: "01" },
@@ -107,7 +140,7 @@ export default function CaseStudy({ project }: { project: Project }) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.85 }}
-            className="flex gap-4"
+            className="flex gap-4 mb-20"
           >
             {project.liveUrl && (
               <a
@@ -134,16 +167,43 @@ export default function CaseStudy({ project }: { project: Project }) {
           </motion.div>
         )}
 
-        {/* Next project */}
+        {/* Next / Prev navigation */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1 }}
-          className="mt-24 pt-12 border-t border-white/5 text-center"
+          className="mt-16 pt-12 border-t border-white/5"
         >
-          <Link href="/#projects" className="text-gray-500 hover:text-amber-400 transition-colors text-sm">
-            ← Back to all projects
-          </Link>
+          <div className="grid grid-cols-2 gap-6">
+            <Link
+              href={`/projects/${prev.slug}`}
+              className="group p-6 rounded-2xl border border-white/5 hover:border-white/10 transition-all duration-300"
+              style={{ background: "rgba(22, 27, 39, 0.3)" }}
+            >
+              <div className="flex items-center gap-2 text-xs text-gray-600 mb-3">
+                <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
+                Previous
+              </div>
+              <div className="text-sm font-bold text-white group-hover:text-amber-400 transition-colors">
+                {prev.title}
+              </div>
+              <div className="text-xs text-gray-600 mt-1">{prev.type}</div>
+            </Link>
+            <Link
+              href={`/projects/${next.slug}`}
+              className="group p-6 rounded-2xl border border-white/5 hover:border-white/10 transition-all duration-300 text-right"
+              style={{ background: "rgba(22, 27, 39, 0.3)" }}
+            >
+              <div className="flex items-center justify-end gap-2 text-xs text-gray-600 mb-3">
+                Next
+                <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+              </div>
+              <div className="text-sm font-bold text-white group-hover:text-amber-400 transition-colors">
+                {next.title}
+              </div>
+              <div className="text-xs text-gray-600 mt-1">{next.type}</div>
+            </Link>
+          </div>
         </motion.div>
       </div>
     </main>

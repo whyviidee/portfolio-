@@ -2,11 +2,12 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Mail, Github, Linkedin } from "lucide-react";
+import { Mail, Github, Linkedin, Instagram, Download } from "lucide-react";
 
 const socials = [
   { icon: Github, label: "GitHub", href: "https://github.com/whyviidee" },
   { icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com/in/whyviidee" },
+  { icon: Instagram, label: "Instagram", href: "https://instagram.com/deejay.dago" },
 ];
 
 export default function Contact() {
@@ -59,6 +60,18 @@ export default function Contact() {
         >
           <Mail size={20} />
           Send me an email
+        </motion.a>
+
+        <motion.a
+          href="/cv.pdf"
+          download
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.42 }}
+          className="inline-flex items-center gap-3 px-8 py-3.5 border border-white/10 text-white rounded-full hover:border-amber-400/30 transition-all duration-300 hover:scale-105 ml-4"
+        >
+          <Download size={18} />
+          Download CV
         </motion.a>
 
         {/* Socials */}

@@ -12,6 +12,7 @@ export type Project = {
   problem: string;
   solution: string;
   result: string;
+  highlights: { label: string; value: string }[];
 };
 
 export const projects: Project[] = [
@@ -31,6 +32,12 @@ export const projects: Project[] = [
       "Built a full mobile app with event management, AI event import from images/text, real-time community chat, press kits, and a multi-tenant booking system.",
     result:
       "40+ screens, 20 database tables, 8 edge functions, AI multi-event import, communities with real-time messaging, and press kit generation.",
+    highlights: [
+      { label: "Screens", value: "40+" },
+      { label: "DB Tables", value: "20" },
+      { label: "Edge Functions", value: "8" },
+      { label: "AI Features", value: "3" },
+    ],
   },
   {
     slug: "discord-bot-ai",
@@ -46,6 +53,11 @@ export const projects: Project[] = [
     solution:
       "Built a bot using Claude API for multi-turn conversations with memory, custom moderation workflows, and extensible command system.",
     result: "Deployed bot handling multi-turn AI conversations, server moderation, and 10+ custom slash commands.",
+    highlights: [
+      { label: "Commands", value: "10+" },
+      { label: "AI Model", value: "Claude" },
+      { label: "Uptime", value: "24/7" },
+    ],
   },
   {
     slug: "dj-webpage",
@@ -60,6 +72,11 @@ export const projects: Project[] = [
     problem: "As a DJ active across Portugal and Mozambique, I needed a direct booking channel beyond Instagram.",
     solution: "Built a minimal, fast static site with event listings, booking info, and direct WhatsApp CTA. No frameworks, no bloat.",
     result: "Live booking page for DJ Dagô, clean dark aesthetic matching the brand, used for direct bookings and event discovery.",
+    highlights: [
+      { label: "Load Time", value: "<1s" },
+      { label: "Stack", value: "Static" },
+      { label: "Bookings", value: "Direct" },
+    ],
   },
   {
     slug: "lisboa-rio",
@@ -75,6 +92,11 @@ export const projects: Project[] = [
     solution:
       "Designed a native app concept with loyalty point system, event browsing, QR ticket scanning, tier-based benefits, and referral mechanics.",
     result: "Full design concept with 10+ screens — login, events, QR tickets, virtual card, loyalty program, and engagement features.",
+    highlights: [
+      { label: "Screens", value: "10+" },
+      { label: "Features", value: "6" },
+      { label: "Type", value: "Concept" },
+    ],
   },
   {
     slug: "musictolegal",
@@ -92,6 +114,12 @@ export const projects: Project[] = [
       "Built an 8-phase scan pipeline — acoustic fingerprinting, API identification, metadata matching, iTunes filename search, mashup/remix detection, and store link verification. Web UI with per-track rescan, filters, and smart store buttons.",
     result:
       "Scans entire DJ libraries, identifies 90%+ of tracks across multiple methods, generates verified purchase links for Beatport, Traxsource, Bandcamp, and iTunes. Detects remixes, mashups, and DJ mixes automatically.",
+    highlights: [
+      { label: "Match Rate", value: "90%+" },
+      { label: "Scan Phases", value: "8" },
+      { label: "Stores", value: "4" },
+      { label: "Tests", value: "23" },
+    ],
   },
   {
     slug: "rna-tours",
@@ -106,6 +134,11 @@ export const projects: Project[] = [
     problem: "The agency had an outdated website that wasn't converting visitors into bookings.",
     solution: "Built a fast, modern site with clear tour pages, contact forms, and optimized for SEO and performance.",
     result: "Deployed on Vercel with 95+ Lighthouse score, multilingual routes, and a clean conversion-focused design.",
+    highlights: [
+      { label: "Lighthouse", value: "95+" },
+      { label: "Languages", value: "3" },
+      { label: "Deploy", value: "Vercel" },
+    ],
   },
   {
     slug: "tokyo-jamaica",
@@ -121,6 +154,11 @@ export const projects: Project[] = [
     solution:
       "Explored a bold dark aesthetic with glassmorphism, animated waveforms, gesture-based navigation, and a unique visual identity.",
     result: "High-fidelity prototype with custom components, demonstrating advanced UI/UX and animation capabilities.",
+    highlights: [
+      { label: "Style", value: "Glassmorphism" },
+      { label: "Animations", value: "12+" },
+      { label: "Components", value: "Custom" },
+    ],
   },
   {
     slug: "txx-app",
@@ -136,5 +174,11 @@ export const projects: Project[] = [
     solution:
       "Built a native app with rotating payment schedules, MB WAY shortcuts, trip modules, member profiles, AI roast generator, Face ID/fingerprint auth, and push notifications — Mozambican context built-in.",
     result: "Native app with home dashboard, xitique wallet, trip management, gallery, games, events calendar, and voting — all with native performance and biometric security.",
+    highlights: [
+      { label: "Members", value: "12" },
+      { label: "Modules", value: "7" },
+      { label: "Auth", value: "Biometric" },
+      { label: "DB", value: "InstantDB" },
+    ],
   },
 ];

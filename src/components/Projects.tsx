@@ -1,14 +1,14 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef } from "react";
+import { useState, useRef } from "react";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 import { projects } from "@/data/projects";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
-function ProjectCard({ project, index }: { project: typeof projects[0]; index: number }) {
+const types = ["All", ...Array.from(new Set(projects.map((p) => p.type)))];
+
+function ProjectCard({ project, index }: { project: (typeof projects)[0]; index: number }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
   const [hovered, setHovered] = useState(false);
@@ -16,9 +16,11 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
   return (
     <motion.div
       ref={ref}
+      layout
       initial={{ opacity: 0, y: 60 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.7, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+      exit={{ opacity: 0, y: 20, scale: 0.95 }}
+      transition={{ duration: 0.5, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
     >
       <Link href={`/projects/${project.slug}`}>
         <div
@@ -81,6 +83,9 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
 export default function Projects() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [activeFilter, setActiveFilter] = useState("All");
+
+  const filtered = activeFilter === "All" ? projects : projects.filter((p) => p.type === activeFilter);
 
   return (
     <section id="projects" className="py-32 px-6">
@@ -100,18 +105,42 @@ export default function Projects() {
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-4xl md:text-6xl font-bold"
+            className="text-4xl md:text-6xl font-bold mb-8"
           >
             Projects
           </motion.h2>
+
+          {/* Filter pills */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="flex flex-wrap gap-2"
+          >
+            {types.map((type) => (
+              <button
+                key={type}
+                onClick={() => setActiveFilter(type)}
+                className={`text-xs px-4 py-2 rounded-full border transition-all duration-300 ${
+                  activeFilter === type
+                    ? "bg-amber-400 text-black border-amber-400 font-semibold"
+                    : "border-white/10 text-gray-400 hover:border-amber-400/30 hover:text-white"
+                }`}
+              >
+                {type}
+              </button>
+            ))}
+          </motion.div>
         </div>
 
         {/* Grid */}
-        <div className="grid md:grid-cols-2 gap-6">
-          {projects.map((project, i) => (
-            <ProjectCard key={project.slug} project={project} index={i} />
-          ))}
-        </div>
+        <motion.div layout className="grid md:grid-cols-2 gap-6">
+          <AnimatePresence mode="popLayout">
+            {filtered.map((project, i) => (
+              <ProjectCard key={project.slug} project={project} index={i} />
+            ))}
+          </AnimatePresence>
+        </motion.div>
       </div>
     </section>
   );

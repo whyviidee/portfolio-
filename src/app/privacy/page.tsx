@@ -1,17 +1,17 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — Yuri Dagot",
+  title: "Privacy Policy",
   description: "Privacy policy for apps developed by Yuri Dagot.",
 };
 
 export default function PrivacyPage() {
   return (
-    <main className="min-h-screen bg-black text-white px-6 py-24 max-w-3xl mx-auto">
+    <main className="min-h-screen px-6 py-32 max-w-3xl mx-auto">
       <h1 className="text-4xl font-bold mb-2">Privacy Policy</h1>
-      <p className="text-neutral-500 mb-12">Last updated: March 9, 2026</p>
+      <p className="text-gray-600 mb-12">Last updated: March 9, 2026</p>
 
-      <section className="space-y-8 text-neutral-300 leading-relaxed">
+      <section className="space-y-8 text-gray-300 leading-relaxed">
         <div>
           <h2 className="text-xl font-semibold text-white mb-3">Overview</h2>
           <p>
@@ -84,7 +84,7 @@ export default function PrivacyPage() {
           <h2 className="text-xl font-semibold text-white mb-3">Contact</h2>
           <p>
             For any questions about this privacy policy or your data, contact us at:{" "}
-            <a href="mailto:yuridagot@gmail.com" className="text-blue-400 hover:underline">
+            <a href="mailto:yuridagot@gmail.com" className="text-amber-400 hover:underline">
               yuridagot@gmail.com
             </a>
           </p>

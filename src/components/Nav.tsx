@@ -2,10 +2,12 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Download } from "lucide-react";
 
 const links = [
   { label: "Projects", href: "#projects" },
   { label: "About", href: "#about" },
+  { label: "Experience", href: "#experience" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -60,6 +62,15 @@ export default function Nav() {
                 <span className="absolute -bottom-1 left-0 w-0 h-px bg-amber-400 group-hover:w-full transition-all duration-300" />
               </button>
             ))}
+            <a
+              href="/cv.pdf"
+              download
+              className="flex items-center gap-1.5 text-xs px-3 py-2 text-gray-400 hover:text-white transition-colors duration-300"
+              title="Download CV"
+            >
+              <Download size={14} />
+              CV
+            </a>
             <a
               href="mailto:ydagot@gmail.com"
               className="text-xs px-4 py-2 border border-amber-400/30 text-amber-400 rounded-full hover:bg-amber-400 hover:text-black transition-all duration-300"
