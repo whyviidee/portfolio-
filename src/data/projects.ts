@@ -181,4 +181,168 @@ export const projects: Project[] = [
       { label: "DB", value: "InstantDB" },
     ],
   },
+  {
+    slug: "library-dj",
+    title: "Library DJ",
+    type: "Desktop App",
+    description: "Desktop app for DJs to organize, clean, and enrich their music library — with AI genre suggestions.",
+    longDescription:
+      "Native desktop app built for DJs who need to organize thousands of tracks. Scans music folders, reads tags, detects duplicates, suggests genres via AI, and exports smart crates as M3U8 playlists. Built with Tauri and Rust for native performance.",
+    tech: ["Tauri v2", "React 19", "Rust", "SQLite", "Zustand", "Gemini AI", "Discogs API"],
+    color: "#22D3EE",
+    year: "2026",
+    liveUrl: "https://librarydj.me",
+    problem:
+      "DJs accumulate thousands of tracks with messy tags, missing genres, and duplicates. Manually cleaning a library of 16k+ tracks is impossible.",
+    solution:
+      "Built a desktop app that scans music folders, reads/writes tags, detects duplicates by hash, suggests genres via Gemini AI, looks up metadata on Discogs, and generates smart crates by genre, moment, or energy level.",
+    result:
+      "MVP published — signed .dmg, virtual scrolling for 16k+ tracks, AI genre suggestions, duplicate detection, smart crate export, backup/restore, and a landing page with protected downloads.",
+    highlights: [
+      { label: "Tracks", value: "16k+" },
+      { label: "Backend", value: "Rust" },
+      { label: "AI", value: "Gemini" },
+      { label: "Price", value: "€45" },
+    ],
+  },
+  {
+    slug: "ika-dogwear",
+    title: "Ika Dogwear",
+    type: "E-Commerce",
+    description: "Handcrafted dog collars and leashes — full e-commerce with admin CMS and order management.",
+    longDescription:
+      "Full e-commerce platform for a Portuguese artisan brand selling handcrafted paracord and biothane dog accessories. Features a custom admin CMS with inline editing, product management, order tracking, and SEO optimization.",
+    tech: ["Next.js 16", "Tailwind v4", "Supabase", "Framer Motion", "Vercel Analytics"],
+    color: "#741D28",
+    year: "2026",
+    problem:
+      "A small artisan brand needed an online store that reflected the handmade quality of their products, with full control over content and orders — without paying Shopify fees.",
+    solution:
+      "Built a custom e-commerce with inline CMS editing, product CRUD, order management with status workflow, CSV export, cookie consent, FAQ accordion, and full SEO with JSON-LD schemas.",
+    result:
+      "Live store with admin dashboard (overview, products, orders), 95+ Lighthouse score, GDPR compliant, newsletter integration, and ready for Stripe checkout.",
+    highlights: [
+      { label: "Lighthouse", value: "95+" },
+      { label: "Admin Tabs", value: "3" },
+      { label: "SEO", value: "JSON-LD" },
+      { label: "Deploy", value: "Vercel" },
+    ],
+  },
+  {
+    slug: "clutchups",
+    title: "ClutchUps",
+    type: "Web App",
+    description: "Competitive Call of Duty wager platform — real money matches, tournaments, and leaderboards.",
+    longDescription:
+      "Full-stack competitive gaming platform where players wager real money on Call of Duty matches. Features ELO ranking, map draft system, real-time match flow via Supabase Presence, Stripe payments, LFG system, and an admin dispute resolution panel.",
+    tech: ["Next.js 14", "TypeScript", "Supabase", "Stripe", "Realtime Presence"],
+    color: "#EF4444",
+    year: "2026",
+    liveUrl: "https://clutchups.com",
+    problem:
+      "Competitive CoD players had no trusted platform for money matches with proper dispute resolution, fair matchmaking, and secure payments in the EU market.",
+    solution:
+      "Built a platform with real-time match flow (queue, ready check, captain vote, map draft, challenge phase, series vote), Stripe deposits/withdrawals, ELO-based leaderboard, report system with admin panel, and LFG posting.",
+    result:
+      "Live platform with Stripe payments (card, MBWay, PayPal), XP tier system (6 ranks), BO1/BO3/BO5/BO7 series, viewer sidebets, seeded PRNG map roulette, and full dispute resolution workflow.",
+    highlights: [
+      { label: "Payments", value: "Stripe" },
+      { label: "Ranks", value: "6 Tiers" },
+      { label: "Realtime", value: "Presence" },
+      { label: "Maps", value: "BO7" },
+    ],
+  },
+  {
+    slug: "instagram-analytics",
+    title: "Instagram Analytics",
+    type: "Automation",
+    description: "Instagram automation toolkit — analytics, publishing, captions, and content calendar for DJs.",
+    longDescription:
+      "Python automation suite for managing a DJ Instagram account. Pulls analytics via Meta API, generates captions, schedules posts, and tracks engagement metrics — built for the @deejay.dago account.",
+    tech: ["Python", "Meta Graph API", "Instagram API", "Automation"],
+    color: "#E1306C",
+    year: "2026",
+    problem:
+      "Managing an Instagram presence as a DJ requires constant posting, tracking what works, and adapting content — all manually across multiple Meta tools.",
+    solution:
+      "Built 9 Python modules covering analytics dashboards, content publishing, caption generation, posting calendar, and engagement tracking — all connected to the Meta Graph API with long-lived tokens.",
+    result:
+      "Functional automation suite managing a 9.4k follower account. Best performing: Tuesdays at 9AM, carousels at 2.11% engagement. Publisher ready, ads module pending.",
+    highlights: [
+      { label: "Followers", value: "9.4k" },
+      { label: "Modules", value: "9" },
+      { label: "Best Time", value: "Tue 9AM" },
+      { label: "Top Format", value: "Carousel" },
+    ],
+  },
+  {
+    slug: "songer",
+    title: "SONGER",
+    type: "Desktop App",
+    description: "Music manager for DJs and collectors — library browser, player, Spotify integration, and downloads.",
+    longDescription:
+      "Desktop music manager built with Python and PyQt6. Browse your library, play tracks with a built-in player, search Spotify, download via yt-dlp, and manage tags with Mutagen — all in one app.",
+    tech: ["Python", "PyQt6", "Spotipy", "yt-dlp", "Mutagen", "FFmpeg"],
+    color: "#1DB954",
+    year: "2025",
+    githubUrl: "https://github.com/whyviidee/SONGER",
+    problem:
+      "DJs and music collectors need a single tool to browse their library, preview tracks, discover new music, and download — without switching between 5 different apps.",
+    solution:
+      "Built a desktop app with a library browser, built-in audio player, Spotify search integration, yt-dlp downloads, tag editing via Mutagen, and a home view with quick actions.",
+    result:
+      "v2.0.0 released — Liquid redesign, embedded player, library filters, Spotify integration, YouTube downloads, and cross-platform support.",
+    highlights: [
+      { label: "Version", value: "v2.0.0" },
+      { label: "Player", value: "Built-in" },
+      { label: "Downloads", value: "yt-dlp" },
+      { label: "Tags", value: "Mutagen" },
+    ],
+  },
+  {
+    slug: "theoffice",
+    title: "theOFFICE / GRVVE",
+    type: "Web App",
+    description: "AI-powered marketing system for music events — simulation mode with autonomous agents.",
+    longDescription:
+      "AI marketing engine for GRVVE event brand (Fiesta Dura, Salero, Bashment, Remember, Apupu). Autonomous agents handle content creation, scheduling, and audience targeting — currently in simulation mode with internal outputs.",
+    tech: ["Node.js", "TypeScript", "React", "Phaser 3", "Supabase", "AI Agents"],
+    color: "#7C3AED",
+    year: "2026 — In Progress",
+    problem:
+      "Promoting multiple recurring music events across different audiences requires constant manual work — posts, stories, targeting, timing — that doesn't scale.",
+    solution:
+      "Built an AI agent system where autonomous marketing agents create content, plan campaigns, and simulate audience engagement for each event brand — with a React+Phaser visualization dashboard.",
+    result:
+      "Simulation mode functional with Express server, AI agents pipeline, and React+Phaser dashboard. Pending: real integrations with Meta Ads and Instagram publishing.",
+    highlights: [
+      { label: "Events", value: "5 Brands" },
+      { label: "Mode", value: "Simulation" },
+      { label: "Agents", value: "AI" },
+      { label: "Viz", value: "Phaser 3" },
+    ],
+  },
+  {
+    slug: "gabineteos",
+    title: "GabineteOS",
+    type: "SaaS",
+    description: "Accounting office SaaS — multi-org management for Portuguese accountants.",
+    longDescription:
+      "Enterprise SaaS platform for Portuguese accounting offices. Multi-organization management with client tracking, service workflows, activity logs, and team collaboration — built with a Turborepo monorepo architecture.",
+    tech: ["Next.js 15", "NestJS", "Drizzle", "PostgreSQL", "Redis", "Turborepo", "Bun"],
+    color: "#B8861A",
+    year: "2026 — In Progress",
+    problem:
+      "Portuguese accounting offices juggle dozens of clients across spreadsheets and fragmented tools, with no centralized platform for workflows, deadlines, and team coordination.",
+    solution:
+      "Built a full-stack SaaS with NestJS backend (auth, organizations, clients, services), Drizzle ORM, PostgreSQL, Redis caching — and a Next.js 15 frontend with shadcn/ui. Turborepo monorepo managed with Bun.",
+    result:
+      "Backend phases 0-3 complete (auth, orgs, clients, services, activity). Frontend phase 4 pending — awaiting team alignment to begin.",
+    highlights: [
+      { label: "Backend", value: "NestJS" },
+      { label: "ORM", value: "Drizzle" },
+      { label: "Cache", value: "Redis" },
+      { label: "Monorepo", value: "Turborepo" },
+    ],
+  },
 ];
