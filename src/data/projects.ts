@@ -44,6 +44,7 @@ export const projects: Project[] = [
     slug: "discord-bot-ai",
     title: "Discord AI Bot",
     type: "Bot / API",
+    liveUrl: "https://chimocobot.pt",
     description: "AI-powered Discord bot — context-aware conversations, moderation, and commands.",
     longDescription:
       "Discord bot powered by Claude API with context-aware multi-turn conversations, server moderation tools, and custom slash commands.",
@@ -64,6 +65,7 @@ export const projects: Project[] = [
     slug: "dj-webpage",
     title: "DJ Dagô Website",
     type: "Website",
+    liveUrl: "https://deejaydago.pt",
     description: "Personal booking website for DJ Dagô — events, contact, and direct booking.",
     longDescription:
       "Fast static website for DJ Dagô's booking and event presence, with upcoming events listing and direct WhatsApp booking CTA.",
@@ -281,6 +283,7 @@ export const projects: Project[] = [
     slug: "songer",
     title: "SONGER",
     type: "Desktop App",
+    liveUrl: "https://songerapp.me",
     description: "Music manager for DJs and collectors — library browser, player, Spotify integration, and downloads.",
     longDescription:
       "Desktop music manager built with Python and PyQt6. Browse your library, play tracks with a built-in player, search Spotify, download via yt-dlp, and manage tags with Mutagen — all in one app.",
