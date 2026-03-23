@@ -150,7 +150,7 @@ export default function CaseStudy({ project }: { project: Project }) {
                 className="inline-flex items-center gap-2 px-6 py-3 bg-amber-400 text-black font-semibold rounded-full hover:bg-amber-300 transition-all duration-300 hover:scale-105"
               >
                 <ExternalLink size={16} />
-                Live demo
+                Visit website
               </a>
             )}
             {project.githubUrl && (
