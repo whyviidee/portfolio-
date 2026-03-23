@@ -20,6 +20,7 @@ export const projects: Project[] = [
     slug: "agendadj",
     title: "AgendaDJ",
     type: "Mobile App",
+    liveUrl: "https://agendadj.pt",
     description: "Platform connecting DJs with fans and event organizers across Mozambique.",
     longDescription:
       "Full-stack mobile platform built for the DJ ecosystem — booking, events, backstage access, AI-powered tools, and real-time communities.",
