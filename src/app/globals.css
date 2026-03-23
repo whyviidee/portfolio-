@@ -68,3 +68,14 @@ body {
 .accent-glow {
   box-shadow: 0 0 40px rgba(245, 158, 11, 0.15);
 }
+
+/* GPU-accelerate blur backgrounds */
+.blur-3xl {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Faster hover transitions globally */
+a, button {
+  -webkit-tap-highlight-color: transparent;
+}

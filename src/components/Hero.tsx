@@ -1,16 +1,18 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 const name = "Yuri Dagot";
 const chars = name.split("");
 
+const ease = [0.16, 1, 0.3, 1] as const;
+
 export default function Hero() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const t = setTimeout(() => setVisible(true), 200);
+    const t = setTimeout(() => setVisible(true), 100);
     return () => clearTimeout(t);
   }, []);
 
@@ -19,9 +21,12 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative w-full" style={{ minHeight: "100svh", display: "flex", flexDirection: "column", justifyContent: "center", padding: "0 1.5rem", overflow: "hidden" }}>
-      {/* Ambient background */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+    <section
+      className="relative w-full flex flex-col justify-center overflow-hidden"
+      style={{ minHeight: "100svh", padding: "0 1.5rem" }}
+    >
+      {/* Ambient background — GPU accelerated */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none" style={{ willChange: "transform" }}>
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-amber-400/5 rounded-full blur-3xl" />
         <div className="absolute bottom-1/3 right-1/4 w-64 h-64 bg-amber-600/5 rounded-full blur-3xl" />
         <div
@@ -39,7 +44,7 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 0.4, delay: 0.1 }}
           className="mb-8 flex items-center gap-2"
         >
           <span className="relative flex h-2 w-2">
@@ -56,14 +61,15 @@ export default function Hero() {
           {chars.map((char, i) => (
             <motion.span
               key={i}
-              initial={{ opacity: 0, y: 60 }}
+              initial={{ opacity: 0, y: 50 }}
               animate={visible ? { opacity: 1, y: 0 } : {}}
               transition={{
-                duration: 0.6,
-                delay: 0.4 + i * 0.05,
-                ease: [0.16, 1, 0.3, 1],
+                duration: 0.5,
+                delay: 0.15 + i * 0.035,
+                ease,
               }}
               className={char === " " ? "inline-block mr-[0.3em]" : "inline-block"}
+              style={{ willChange: "transform, opacity" }}
             >
               {char}
             </motion.span>
@@ -72,9 +78,9 @@ export default function Hero() {
 
         {/* Subtitle */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.1, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.5, delay: 0.55, ease }}
           className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-6"
         >
           <div className="h-px w-12 bg-amber-400" />
@@ -83,9 +89,9 @@ export default function Hero() {
 
         {/* One-liner */}
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.3, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.5, delay: 0.65, ease }}
           className="text-gray-500 text-base sm:text-lg max-w-xl mb-12 leading-relaxed"
         >
           Building apps, platforms & websites — from Mozambique to the world.
@@ -93,32 +99,31 @@ export default function Hero() {
 
         {/* CTA */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.5, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.5, delay: 0.75, ease }}
           className="flex flex-wrap gap-4"
         >
           <button
             onClick={scrollToProjects}
-            className="px-8 py-3 bg-amber-400 text-black text-sm font-semibold rounded-full hover:bg-amber-300 transition-all duration-300 hover:scale-105 active:scale-95"
+            className="px-8 py-3 bg-amber-400 text-black text-sm font-semibold rounded-full hover:bg-amber-300 transition-all duration-200 hover:scale-105 active:scale-95"
           >
             View my work
           </button>
           <a
             href="mailto:ydagot@gmail.com"
-            className="px-8 py-3 border border-white/10 text-white text-sm rounded-full hover:border-amber-400/50 transition-all duration-300"
+            className="px-8 py-3 border border-white/10 text-white text-sm rounded-full hover:border-amber-400/50 transition-all duration-200"
           >
             Get in touch
           </a>
         </motion.div>
-
       </div>
 
-      {/* Scroll indicator — fixed à base da section */}
+      {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 2.2 }}
+        transition={{ delay: 1.2 }}
         className="absolute bottom-8 left-8 flex flex-col items-center gap-2"
       >
         <span className="text-xs text-gray-600 tracking-widest uppercase">Scroll</span>
