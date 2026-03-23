@@ -349,4 +349,27 @@ export const projects: Project[] = [
       { label: "Monorepo", value: "Turborepo" },
     ],
   },
+  {
+    slug: "presencas-professor",
+    title: "Presenças Professor",
+    type: "Web App",
+    description: "Attendance tracking app for a children's educator — simple, fast, built for daily classroom use.",
+    longDescription:
+      "Web app built for a friend who works as a children's educator, to track student attendance daily. Simple interface designed for speed — open, tap present/absent, done. One of the first real projects built for a real user.",
+    tech: ["HTML", "CSS", "JavaScript"],
+    color: "#3B82F6",
+    year: "2024",
+    liveUrl: "https://presencasprofessor.pt",
+    problem:
+      "A children's educator was tracking attendance on paper every day — slow, messy, and hard to review at the end of the month.",
+    solution:
+      "Built a simple web app where the educator opens it daily, marks each student as present or absent with a tap, and can review attendance history at any time.",
+    result:
+      "In daily use by the educator. Fast load, mobile-friendly, no login friction — just open and track.",
+    highlights: [
+      { label: "Users", value: "1" },
+      { label: "Daily Use", value: "Yes" },
+      { label: "Stack", value: "Vanilla" },
+    ],
+  },
 ];
