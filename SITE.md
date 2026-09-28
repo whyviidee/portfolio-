@@ -49,7 +49,7 @@ Referências gerais em `.claude/skills/site/references/estado-da-arte.md` e `sit
 ## Direcção escolhida (28 Set 2026)
 **A 1, "Da Marginal ao Cais", com os dois céus e o nome a mudar da 3.** Detalhe completo em `docs/direccoes/DIRECCOES.md`; quadros em `docs/direccoes/direccao-*.jpg`.
 - Motif: a linha de água. A Marginal de Maputo (Índico) e o Cais do Sodré (Tejo). Fotografia documental com a luz do fim do dia.
-- Fio contínuo: a linha do horizonte, sempre à mesma altura do ecrã: mar, asa do avião, Tejo, linha das cabeças na pista (vira onda sonora), cursor numa linha de código.
+- ~~Fio contínuo~~ (retirado a 29 Set 2026, o Yuri achou a linha horrível): a linha do horizonte, sempre à mesma altura do ecrã: mar, asa do avião, Tejo, linha das cabeças na pista (vira onda sonora), cursor numa linha de código.
 - A pessoa: o Yuri recortado de fotos reais, ao centro. De costas no início, de frente no fim.
 - O pico: voo contínuo de 30 s conduzido pelo scroll, da Marginal ao anoitecer até dentro de um armazém no Cais cheio de gente (Wan 3.0 num só plano, sequência de frames em canvas).
 - Da direcção 3: **os dois céus** (hora e tempo reais de Maputo e de Lisboa, no topo) e **o nome a mudar** por capítulo (dagotinho, WhyViiDee, Dagô, Yuri Dagot), com o nome real sempre como âncora.
@@ -90,6 +90,9 @@ Registo detalhado em `assets/PROMPTS.md`.
 - [x] Lighthouse telemóvel, build de produção: desempenho 95, acessibilidade 96, boas práticas 100, SEO 100. O único contraste em falta é a assinatura MWLBYD, discreta de propósito.
 - [x] revisão independente (subagente, 28 Set 2026): 8 achados P1 e 10 P2. Corrigidos todos menos dois, que ficam para o Yuri: a data do regresso ao código (2025) contra o Presenças Professor (2024), e a caixa dos céus por cima da fronteira foto/creme no Fala comigo, que aceito
 - [ ] olhos de humano (o Yuri no telemóvel dele)
+
+## Decisões depois da construção
+- 29 Set 2026: sem a linha do horizonte nem a onda. E o voo anda sempre com o scroll, mesmo com as animações do sistema desligadas (o PC do Yuri tem-nas desligadas e ele via só fotografias); nesse caso fica sem amortecimento.
 
 ## Estado
 - Onde ficámos (28 Set 2026): Fase 6 construída no ramo `redesign/historia` do repo do portfolio. Página principal nova (voo, paragens, carril de projectos, Fala comigo), páginas de projecto em português com o desenho novo, privacidade (em inglês, é a que as apps da App Store apontam) e 404.

@@ -5,11 +5,10 @@ import { useEffect, useRef } from "react";
 import { anunciarCapitulo } from "./capitulo";
 
 type Foto = { src: string; alt: string; legenda: string; w: number; h: number };
-type Paragem = { capitulo: number; lugar: string; titulo: React.ReactNode; texto: string; fotos: Foto[]; fundo: string };
+type Paragem = { lugar: string; titulo: React.ReactNode; texto: string; fotos: Foto[]; fundo: string };
 
 const PARAGENS: Paragem[] = [
   {
-    capitulo: 0,
     lugar: "Maputo · 1996 a 2014",
     titulo: "Cresci à beira do Índico.",
     texto:
@@ -18,7 +17,6 @@ const PARAGENS: Paragem[] = [
     fundo: "/voo/paragem-1.webp",
   },
   {
-    capitulo: 1,
     lugar: "Lisboa · 2014",
     titulo: "Vim estudar. Fiquei a tocar.",
     texto:
@@ -27,7 +25,6 @@ const PARAGENS: Paragem[] = [
     fundo: "/voo/paragem-2.webp",
   },
   {
-    capitulo: 2,
     lugar: "Cais do Sodré · desde 2020",
     titulo: (
       <>
@@ -61,17 +58,6 @@ function tempoDoVideo(p: number) {
   return 1;
 }
 
-// vao: meia largura (em unidades do viewBox) da abertura atrás da silhueta na Marginal, ao centro, para a linha não lhe cortar o pescoço
-function caminhoDaOnda(forca: number, t: number, vao = 0) {
-  let d = "M0 60";
-  for (let x = 0; x <= 1000; x += 8) {
-    const env = Math.sin(x * 0.011 + 0.6) ** 2 * Math.sin(x * 0.0037 + 1.3) ** 2;
-    const salta = Math.abs(x - 500) < vao;
-    d += ` ${salta ? "M" : "L"}${x} ${(60 + forca * 52 * env * Math.sin(x * 0.19 + t * 9)).toFixed(1)}`;
-  }
-  return d;
-}
-
 export default function Voo() {
   const raiz = useRef<HTMLElement>(null);
 
@@ -79,23 +65,10 @@ export default function Voo() {
     const el = raiz.current!;
     const paragens = [...el.querySelectorAll<HTMLElement>(".paragem")];
     const abre = el.querySelector<HTMLElement>(".voo-abre")!;
-    const linha = el.querySelector<SVGSVGElement>(".voo-linha")!;
-    const onda = linha.querySelector("path")!;
-    const ecraGrande = () => innerWidth >= 1000 && innerHeight >= 800;
-    const vaoDaSilhueta = () => (innerWidth < 700 ? 52 : 22); // a silhueta ocupa mais largura no telemóvel
-    const mexe = matchMedia("(prefers-reduced-motion: no-preference)").matches;
-
-    if (!mexe) {
-      // Sem movimento: páginas paradas, e o nome muda à medida que cada paragem aparece.
-      onda.setAttribute("d", caminhoDaOnda(0, 0, vaoDaSilhueta()));
-      const obs = new IntersectionObserver(
-        (es) => es.forEach((e) => e.isIntersecting && anunciarCapitulo(Number((e.target as HTMLElement).dataset.capitulo))),
-        { threshold: 0.5 }
-      );
-      [abre, ...paragens].forEach((p) => obs.observe(p));
-      return () => obs.disconnect();
-    }
-
+    // O voo anda sempre com o scroll: é quem visita que o conduz. Com as animações do sistema desligadas
+    // fica mais calmo: o vídeo acompanha o dedo sem deslizar depois.
+    // (Sem JavaScript, as páginas paradas do HTML continuam a contar a história.)
+    const calmo = matchMedia("(prefers-reduced-motion: reduce)").matches;
     el.classList.add("mexe");
     const movel = innerWidth < 700;
     const pasta = movel ? "/voo/m" : "/voo/d";
@@ -152,8 +125,8 @@ export default function Voo() {
     addEventListener("scroll", aoScroll, { passive: true });
     alvo = mostrado = progresso();
 
-    const laco = (t: number) => {
-      mostrado += (alvo - mostrado) * 0.11;
+    const laco = () => {
+      mostrado = calmo ? alvo : mostrado + (alvo - mostrado) * 0.11;
       const i = Math.round(tempoDoVideo(mostrado) * (TOTAL - 1));
       if (i !== ultimo && desenhar(i)) ultimo = i;
 
@@ -162,22 +135,15 @@ export default function Voo() {
       abre.style.transform = `translateY(${-28 * saida}px)`;
 
       let activa = mostrado < 0.38 ? 0 : mostrado < 0.7 ? 1 : 2;
-      let tapa = 0;
       paragens.forEach((p, n) => {
         const [a, b] = JANELAS[n];
         const v = suave(passo(a, a + 0.03, mostrado)) * (1 - suave(passo(b - 0.03, b, mostrado)));
         p.style.opacity = String(v);
         p.style.transform = `translateY(${(1 - v) * 24}px)`;
         p.style.pointerEvents = v > 0.5 ? "auto" : "none";
-        // o fio recua quando há texto por cima dele; na última paragem, em ecrã grande, o texto fica acima da onda
-        if (n < 2 || !ecraGrande()) tapa = Math.max(tapa, v);
       });
-      // em ecrã pequeno o texto ocupa a largura toda: aí o fio desaparece de todo
-      linha.style.opacity = String(1 - (ecraGrande() ? 0.7 : 1) * tapa);
       if (progresso() >= 1 && pista.getBoundingClientRect().bottom < innerHeight * 0.4) activa = 3;
       if (activa !== capitulo) { capitulo = activa; anunciarCapitulo(activa); }
-
-      onda.setAttribute("d", caminhoDaOnda(suave(passo(0.74, 0.86, mostrado)), t / 1000, (1 - saida) * vaoDaSilhueta()));
       raf = visivel ? requestAnimationFrame(laco) : 0;
     };
     raf = requestAnimationFrame(laco);
@@ -203,10 +169,7 @@ export default function Voo() {
         <div className="voo-palco">
           <div className="voo-inicio" style={{ backgroundImage: "url(/voo/inicio.webp)" }} aria-hidden="true" />
           <canvas className="voo-tela" aria-hidden="true" />
-          <svg className="voo-linha" viewBox="0 0 1000 120" preserveAspectRatio="none" aria-hidden="true">
-            <path d="M0 60 L1000 60" />
-          </svg>
-          <div className="voo-abre" data-capitulo={0}>
+          <div className="voo-abre">
             <h1>
               Sou de Maputo.{" "}
               <span>Vivo em Lisboa.</span>
@@ -215,7 +178,7 @@ export default function Voo() {
             <span className="voo-sitio">Marginal, Maputo</span>
           </div>
           {PARAGENS.map((p, n) => (
-            <article key={n} className={`paragem paragem-${n + 1}`} data-capitulo={p.capitulo} style={{ "--fundo": `url(${p.fundo})` } as React.CSSProperties}>
+            <article key={n} className={`paragem paragem-${n + 1}`} style={{ "--fundo": `url(${p.fundo})` } as React.CSSProperties}>
               <div className="paragem-texto">
                 <span className="paragem-lugar">{p.lugar}</span>
                 <h2>{p.titulo}</h2>

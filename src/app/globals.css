@@ -63,8 +63,6 @@ h1, h2, h3 { font-family: var(--font-serif); font-weight: 700; letter-spacing: -
 .voo-palco { position: relative; }
 .voo-tela { display: none; }
 .voo-inicio { position: relative; height: 100vh; height: 100svh; background: center / cover no-repeat; }
-.voo-linha { position: absolute; left: 0; width: 100%; top: 57.3vh; top: 57.3svh; height: 120px; transform: translateY(-50%); pointer-events: none; z-index: 2; }
-.voo-linha path { fill: none; stroke: var(--espuma); stroke-width: 1.6; vector-effect: non-scaling-stroke; }
 .voo-abre { position: absolute; top: 0; left: 0; right: 0; height: 100vh; height: 100svh; padding: clamp(84px, 14vh, 150px) var(--lado) 0; z-index: 3; }
 .voo-abre h1 { font-size: clamp(42px, min(7.2vw, 11.5vh), 108px); line-height: 0.98; color: var(--espuma); text-shadow: 0 2px 30px rgba(14, 42, 48, 0.35); }
 .voo-abre h1 span { display: block; color: var(--areia); }
@@ -81,7 +79,7 @@ h1, h2, h3 { font-family: var(--font-serif); font-weight: 700; letter-spacing: -
 .paragem::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(11, 13, 16, 0.78) 0%, rgba(11, 13, 16, 0.35) 55%, rgba(11, 13, 16, 0.1) 100%); pointer-events: none; }
 .paragem > * { position: relative; }
 .paragem-2 { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr); }
-/* na última paragem a onda corre a meio do ecrã: fotos por cima dela, texto por baixo */
+/* na última paragem as fotos ficam em cima e o texto em baixo, para se ver a pista ao meio */
 .paragem-3 { grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.7fr); align-items: end; padding-top: 12vh; padding-bottom: 7vh; }
 .paragem-3 .paragem-texto { max-width: 820px; }
 .paragem-3 h2 { font-size: clamp(30px, min(3.6vw, 6vh), 56px); }

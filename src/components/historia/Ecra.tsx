@@ -17,7 +17,7 @@ export default function Ecra() {
     // a secção pode ter milhares de px de altura: conta quando o topo passa o meio do ecrã
     const obs = new IntersectionObserver(([e]) => e.isIntersecting && anunciarCapitulo(3), { rootMargin: "0px 0px -50% 0px" });
     obs.observe(el);
-    if (!matchMedia("(prefers-reduced-motion: no-preference)").matches) return () => obs.disconnect();
+    const calmo = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     // Carril: a secção prende-se e desliza de lado; a altura acompanha o que há mesmo para deslizar.
     el.classList.add("mexe");
@@ -27,7 +27,7 @@ export default function Ecra() {
     let distancia = 0, raf = 0, alvo = 0, mostrado = 0;
     // o laço só corre enquanto o carril ainda está a chegar ao sítio
     const laco = () => {
-      mostrado += (alvo - mostrado) * 0.12;
+      mostrado = calmo ? alvo : mostrado + (alvo - mostrado) * 0.12;
       if (Math.abs(alvo - mostrado) < 1e-4) mostrado = alvo;
       // o carril chega ao fim aos 86% e segura, para dar tempo de ler o último
       carril.style.transform = `translate3d(${-Math.min(1, mostrado / 0.86) * distancia}px,0,0)`;
