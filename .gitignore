@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# frames do pico: regeneram-se com pico/frames.sh a partir de docs/direccoes/voo-wan-720p.mp4
+pico/frames/
+pico/frames-*/
+docs/direccoes/*.mp4
