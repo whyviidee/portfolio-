@@ -74,6 +74,7 @@ Referências gerais em `.claude/skills/site/references/estado-da-arte.md` e `sit
 ## Assets
 Registo detalhado em `assets/PROMPTS.md`.
 - Fotos reais escolhidas pelo Yuri a 28 Set 2026, originais em `fotos/originais/` (fora do git): 1 piscina em criança, foto de álbum fotografada (4032×3024, restaurar e recortar a outra criança); 2 beira-mar Dez 2020 (3000×4000, pronta); 6 setup em casa Nov 2018 (577×577, melhorar); 8 Rock in Rio cabine 29 Jun 2026 00:10 (4000×6000, profissional); 9 Rock in Rio palco BacanaPlay 28 Jun 2026 20:16 (4000×2667). Usos: 1 abre Maputo, 6 a era WhyViiDee, 8 e 9 os palcos, 2 o fim de frente.
+- Restauros (28 Set 2026, `fotos/restauradas/`, fora do git): 6 melhorada no Nano Banana Pro 2K (2048 px, cara igual; aprovada por mim, à espera dele). 1 no Nano Banana Pro ficou bonita mas mudou a boca e o rosto e inventou piscina: recusada pela regra da cara. Alternativa sem AI (recorte, balanço de brancos por percentis, nitidez): 2581×2359, cara intacta, sem a outra criança. 80 créditos.
 - Bíblia aprovada:
 - Créditos gastos até agora: ~1620 (4 imagens das direcções ~420; voo Wan 3.0 720p 30 s, 1200).
 - Voo da prova: `docs/direccoes/voo-wan-720p.mp4` (fora do git). Resultou: horizonte à mesma altura do princípio ao fim, céu a escurecer, entrada contínua no armazém. Falhou: a ponte nasce na água aos ~12 s; o armazém aparece à frente do Cristo Rei (geografia trocada); frames a 12 MB.
