@@ -84,8 +84,8 @@ export default function PrivacyPage() {
           <h2 className="text-xl font-semibold text-white mb-3">Contact</h2>
           <p>
             For any questions about this privacy policy or your data, contact us at:{" "}
-            <a href="mailto:yuridagot@gmail.com" className="text-amber-400 hover:underline">
-              yuridagot@gmail.com
+            <a href="mailto:ydagot@gmail.com" className="text-amber-400 hover:underline">
+              ydagot@gmail.com
             </a>
           </p>
         </div>
