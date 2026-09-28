@@ -27,10 +27,10 @@
   .ceus b { color: var(--espuma); font-weight: 500; font-variant-numeric: tabular-nums; }
   .nav a { justify-self: end; text-decoration: none; color: var(--noite); background: var(--sodio); padding: 10px 18px; font-weight: 700; }
 
-  .linha { position: absolute; left: 0; right: 0; top: var(--horizonte); height: 120px; transform: translateY(-50%); z-index: 3; pointer-events: none; }
+  .linha { position: absolute; left: 0; width: 100%; top: var(--horizonte); height: 120px; transform: translateY(-50%); z-index: 3; pointer-events: none; }
   .linha path { fill: none; stroke: var(--espuma); stroke-width: 1.6; vector-effect: non-scaling-stroke; }
 
-  .texto { position: absolute; left: 48px; z-index: 4; max-width: 720px; }
+  .texto { position: absolute; left: 48px; right: 48px; z-index: 4; }
   .texto h1, .texto h2 { font-family: 'Zodiak', Georgia, serif; font-weight: 700; letter-spacing: -.02em; line-height: 1; }
   .abre { top: 17vh; }
   .abre h1 { font-size: clamp(48px, 7.2vw, 108px); }
@@ -40,7 +40,7 @@
   .fecha h2 { font-size: clamp(40px, 5.4vw, 80px); }
   .fecha h2 span { color: var(--sodio); }
   .fecha p { margin-top: 16px; font-size: 18px; color: var(--tingido); }
-  .sitio { position: absolute; right: 48px; top: var(--horizonte); transform: translateY(-160%); z-index: 4; font-size: 14px; letter-spacing: .08em; text-transform: uppercase; }
+  .sitio { position: absolute; right: 48px; top: var(--horizonte); transform: translateY(calc(-100% - 72px)); z-index: 4; font-size: 14px; letter-spacing: .08em; text-transform: uppercase; }
 
   /* Sem movimento: o palco é o fim composto, sem pista, e nada fica escondido. */
   .poster { display: none; }
@@ -48,7 +48,7 @@
   html:not(.mexe) .palco { position: relative; height: 100vh; }
   html:not(.mexe) .palco canvas { display: none; }
   html:not(.mexe) .palco .poster { display: block; }
-  html:not(.mexe) .abre { display: none; }
+  html:not(.mexe) .abre, html:not(.mexe) .sitio.dia { display: none; }
 
   /* Com movimento: o texto de fecho só entra no fim do voo. */
   html.mexe .fecha, html.mexe .sitio.noite { opacity: 0; }
@@ -110,12 +110,24 @@
   }
 
   // ---- sem movimento pedido pelo sistema: fica o fim composto e acabou
+  // ---- o horizonte: linha recta no mar, onda sonora na pista
+  const onda = document.getElementById('onda');
+  function linha(forca, t) {
+    let d = 'M0 60';
+    for (let x = 0; x <= 1000; x += 8) {
+      const env = Math.pow(Math.sin(x * 0.011 + 0.6), 2) * Math.pow(Math.sin(x * 0.0037 + 1.3), 2);
+      const y = 60 + forca * 52 * env * Math.sin(x * 0.19 + t * 9);
+      d += ` L${x} ${y.toFixed(1)}`;
+    }
+    onda.setAttribute('d', d);
+  }
+
   const mexe = matchMedia('(prefers-reduced-motion: no-preference)').matches;
-  if (!mexe) { document.getElementById('nome').textContent = 'Dagô'; return; }
+  if (!mexe) { document.getElementById('nome').textContent = 'Dagô'; linha(1, 0); return; }
   document.documentElement.classList.add('mexe');
 
   // ---- o voo: sequência de frames desenhada num canvas, conduzida pelo scroll
-  const TOTAL = window.__TOTAL_FRAMES__ || 300;
+  const TOTAL = window.__TOTAL_FRAMES__ || 240;
   const tela = document.getElementById('tela');
   const ctx = tela.getContext('2d');
   const frames = new Array(TOTAL);
@@ -131,7 +143,7 @@
     const dpr = Math.min(devicePixelRatio || 1, 2);
     tela.width = innerWidth * dpr; tela.height = innerHeight * dpr;
   }
-  addEventListener('resize', ajustar); ajustar();
+  addEventListener('resize', () => { ajustar(); ultimo = -1; }); ajustar();
 
   function desenhar(i) {
     let img = frames[i];
@@ -142,22 +154,11 @@
         if (b && b.complete && b.naturalWidth) { img = b; break; }
       }
     }
-    if (!img || !img.naturalWidth) return;
+    if (!img || !img.naturalWidth) return false;
     const W = tela.width, H = tela.height, r = Math.max(W / img.naturalWidth, H / img.naturalHeight);
     const w = img.naturalWidth * r, h = img.naturalHeight * r;
     ctx.drawImage(img, (W - w) / 2, (H - h) / 2, w, h);
-  }
-
-  // ---- o horizonte: linha recta no mar, onda sonora na pista
-  const onda = document.getElementById('onda');
-  function linha(forca, t) {
-    let d = 'M0 60';
-    for (let x = 0; x <= 1000; x += 8) {
-      const env = Math.pow(Math.sin(x * 0.011 + 0.6), 2) * Math.pow(Math.sin(x * 0.0037 + 1.3), 2);
-      const y = 60 + forca * 52 * env * Math.sin(x * 0.19 + t * 9);
-      d += ` L${x} ${y.toFixed(1)}`;
-    }
-    onda.setAttribute('d', d);
+    return img === frames[i]; // só conta como feito quando é o frame certo, não um vizinho
   }
 
   const nomes = [[0, 'dagotinho'], [0.34, 'WhyViiDee'], [0.78, 'Dagô']];
@@ -181,7 +182,7 @@
     mostrado += (alvo - mostrado) * 0.11;
     const voo = Math.min(1, mostrado / 0.88);
     const i = Math.round(voo * (TOTAL - 1));
-    if (i !== ultimo) { desenhar(i); ultimo = i; }
+    if (i !== ultimo && desenhar(i)) ultimo = i;
 
     abre.style.opacity = String(1 - suave(passo(0.02, 0.12, mostrado)));
     abre.style.transform = `translateY(${-24 * passo(0.02, 0.12, mostrado)}px)`;
