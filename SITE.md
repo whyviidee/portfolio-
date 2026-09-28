@@ -61,7 +61,7 @@ Referências gerais em `.claude/skills/site/references/estado-da-arte.md` e `sit
 
 ### Tokens
 - Paleta (6 papéis e um acento, em hex):
-- Fontes (máx. duas, com pesos):
+- Fontes (escolhidas a 28 Set 2026, teste em `docs/direccoes/fontes.jpg`): **Zodiak 700** nos títulos e no nome; **Satoshi 400/700** no texto e na navegação.
 - Raio dos cantos:
 - NUNCAs deste site:
 
