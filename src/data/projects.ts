@@ -21,14 +21,14 @@ export const projects: Project[] = [
     title: "AgendaDJ",
     type: "Mobile App",
     liveUrl: "https://agendadj.pt",
-    description: "Platform connecting DJs with fans and event organizers across Mozambique.",
+    description: "Platform connecting DJs with fans and event organizers across Portugal.",
     longDescription:
       "Full-stack mobile platform built for the DJ ecosystem — booking, events, backstage access, AI-powered tools, and real-time communities.",
     tech: ["Expo", "React Native", "TypeScript", "Supabase", "PostgreSQL", "Edge Functions", "OpenAI"],
     color: "#F59E0B",
     year: "2025 — In Progress",
     problem:
-      "DJs in Mozambique had no centralized platform to manage bookings, share events, and connect with fans. Information was scattered across WhatsApp groups and Instagram.",
+      "DJs in Portugal had no centralized platform to manage bookings, share events, and connect with fans. Information was scattered across WhatsApp groups and Instagram.",
     solution:
       "Built a full mobile app with event management, AI event import from images/text, real-time community chat, press kits, and a multi-tenant booking system.",
     result:

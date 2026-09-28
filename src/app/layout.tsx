@@ -4,6 +4,7 @@ import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import Cursor from "@/components/Cursor";
+import { SITE_URL } from "@/data/site";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,7 +17,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://yuridagot.dev"),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "Yuri Dagot — Full-Stack Developer",
     template: "%s — Yuri Dagot",
@@ -29,7 +30,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Yuri Dagot — Full-Stack Developer",
     description: "Building apps, platforms & websites — from Mozambique to the world.",
-    url: "https://yuridagot.dev",
+    url: SITE_URL,
     siteName: "Yuri Dagot",
     locale: "en_US",
     type: "website",
@@ -51,7 +52,7 @@ const jsonLd = {
   name: "Yuri Dagot",
   alternateName: "DJ Dagô",
   jobTitle: "Full-Stack Developer",
-  url: "https://yuridagot.dev",
+  url: SITE_URL,
   sameAs: [
     "https://github.com/whyviidee",
     "https://linkedin.com/in/whyviidee",
