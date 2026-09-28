@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<title>Direcções</title>
+<link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@500,800&f[]=satoshi@400,500,700&f[]=tanker@400&f[]=general-sans@400,500,600&f[]=panchang@700,800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #0c0c0c; width: 1440px; }
+  .q { width: 1440px; height: 900px; position: relative; overflow: hidden; }
+  .foto { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .nav { position: absolute; top: 34px; left: 56px; right: 56px; display: flex; justify-content: space-between; align-items: center; z-index: 5; font-size: 15px; letter-spacing: .01em; }
+  .nav a { text-decoration: none; }
+
+  /* 1. Da Marginal ao Cais */
+  .d1 { font-family: 'Satoshi', sans-serif; color: #E9EFEA; }
+  .d1 .nav b { font-family: 'Cabinet Grotesk'; font-weight: 800; font-size: 19px; }
+  .d1 .nav a { color: #0B0D10; background: #F2A541; padding: 10px 18px; font-weight: 700; }
+  .d1 .horizonte { position: absolute; left: 0; right: 0; top: 57.3%; height: 1.5px; background: #E9EFEA; opacity: .85; z-index: 3; }
+  .d1 h1 { position: absolute; left: 56px; top: 150px; font-family: 'Cabinet Grotesk'; font-weight: 800; font-size: 104px; line-height: .98; letter-spacing: -.02em; z-index: 4; text-shadow: 0 2px 30px rgba(14,42,48,.35); }
+  .d1 h1 span { display: block; color: #F2D5A8; }
+  .d1 .lede { position: absolute; left: 60px; top: 390px; width: 470px; font-size: 20px; line-height: 1.55; color: #E9EFEA; z-index: 4; }
+  .d1 .ano { position: absolute; right: 56px; top: 57.3%; transform: translateY(-140%); font-family: 'Cabinet Grotesk'; font-weight: 500; font-size: 15px; letter-spacing: .08em; color: #E9EFEA; z-index: 4; }
+  .d1.noite h2 { position: absolute; left: 56px; bottom: 90px; font-family: 'Cabinet Grotesk'; font-weight: 800; font-size: 78px; line-height: 1; letter-spacing: -.02em; z-index: 4; }
+  .d1.noite h2 span { color: #F2A541; }
+  .d1.noite p { position: absolute; left: 60px; bottom: 50px; font-size: 18px; color: #9DB3B0; z-index: 4; }
+  .d1 .onda { position: absolute; left: 0; right: 0; top: 57.3%; transform: translateY(-50%); z-index: 3; }
+
+  /* 2. Do céu à cave */
+  .d2 { font-family: 'General Sans', sans-serif; color: #141312; }
+  .d2 .nav b { font-family: 'Tanker'; font-size: 26px; font-weight: 400; color: #141312; background: #FAFAF7; padding: 4px 12px; }
+  .d2 .nav a { color: #FAFAF7; background: #C8442C; padding: 10px 18px; font-weight: 600; }
+  .d2 .placa { position: absolute; left: 50%; top: 96px; transform: translateX(-50%); background: #FAFAF7; padding: 26px 44px 30px; text-align: center; z-index: 4; box-shadow: 8px 8px 0 #141312; }
+  .d2 h1 { font-family: 'Tanker'; font-weight: 400; font-size: 96px; line-height: .95; color: #C8442C; }
+  .d2 .placa p { font-size: 19px; line-height: 1.5; margin-top: 12px; color: #1F4E79; font-weight: 500; }
+  .d2 .nav { left: 96px; }
+  .d2 .tira { position: absolute; top: 0; bottom: 0; left: 40px; width: 26px; z-index: 3;
+    background: repeating-linear-gradient(180deg, #F2B632 0 18px, #C8442C 18px 30px, #2E6B4A 30px 44px, #FAFAF7 44px 52px, #1F4E79 52px 70px); box-shadow: 0 0 0 3px #141312; }
+  .d2.cave .placa { top: auto; bottom: 64px; left: 180px; transform: none; text-align: left; }
+  .d2.cave h1 { font-size: 72px; }
+
+  /* 3. Os quatro nomes */
+  .d3 { font-family: 'Satoshi', sans-serif; color: #EDEBE6; background: #101114; }
+  .d3 .nav { color: #8A8F98; font-size: 14px; }
+  .d3 .nav b { color: #EDEBE6; font-weight: 700; }
+  .d3 .ceus { display: flex; gap: 28px; }
+  .d3 .ceus i { font-style: normal; color: #EDEBE6; }
+  .d3 .nav a { color: #101114; background: #EDEBE6; padding: 9px 16px; font-weight: 700; }
+  .d3 .nome { position: absolute; left: 0; right: 0; top: 200px; text-align: center; font-family: 'Panchang'; font-weight: 800; font-size: 196px; line-height: .9; letter-spacing: -.03em;
+    background: url(img/d1-marginal.png) center 55% / cover; -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .d3 .pessoa { position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); width: 300px; height: 470px; background: #2A2C31; border-radius: 150px 150px 0 0; z-index: 4; display: grid; place-items: center; color: #8A8F98; font-size: 14px; text-align: center; line-height: 1.5; }
+  .d3 .legenda { position: absolute; left: 56px; bottom: 70px; width: 380px; font-size: 19px; line-height: 1.55; color: #EDEBE6; z-index: 5; }
+  .d3 .legenda small { display: block; color: #8A8F98; font-size: 14px; margin-bottom: 10px; }
+  .d3 .capitulos { position: absolute; right: 56px; bottom: 70px; text-align: right; font-size: 15px; line-height: 2; color: #55585F; z-index: 5; }
+  .d3 .capitulos b { color: #EDEBE6; }
+  .d3.morph { background: #E5412D; color: #101114; }
+  .d3.morph .nome { color: transparent; background: url(img/d1-cais.png) center / cover; -webkit-background-clip: text; background-clip: text; top: 300px; font-size: 300px; }
+  .d3.morph .cacos { position: absolute; top: 110px; left: 0; right: 0; font-family: 'Panchang'; font-weight: 800; font-size: 120px; color: #101114; opacity: .9; }
+  .d3.morph .cacos span { position: absolute; }
+</style>
+</head>
+<body>
+
+<!-- 1. hero -->
+<section class="q d1" id="d1a">
+  <img class="foto" src="img/d1-marginal.png" alt="">
+  <div class="nav"><b>Yuri Dagot</b><a href="#">Fala comigo</a></div>
+  <h1>Sou de Maputo.<span>Vivo em Lisboa.</span></h1>
+  <p class="lede">Passei a vida a juntar pessoas, na pista e nas festas que criei. Agora construo as coisas que eu próprio precisava.</p>
+  <div class="ano">MARGINAL, MAPUTO · 1996</div>
+  <div class="horizonte"></div>
+</section>
+
+<!-- 1. pico -->
+<section class="q d1 noite" id="d1b">
+  <img class="foto" src="img/d1-cais.png" alt="">
+  <div class="nav"><b>Yuri Dagot</b><a href="#">Fala comigo</a></div>
+  <svg class="onda" width="1440" height="120" viewBox="0 0 1440 120" preserveAspectRatio="none">
+    <path fill="none" stroke="#F2A541" stroke-width="2.5" d="M0 60 L180 60 L200 52 L215 70 L232 38 L248 82 L262 30 L280 88 L296 44 L312 76 L330 20 L346 100 L362 34 L378 86 L396 50 L412 70 L430 60 L520 60 L540 46 L556 78 L572 26 L590 96 L606 40 L624 80 L640 60 L760 60 L776 44 L790 84 L806 18 L824 104 L840 30 L858 92 L874 46 L890 74 L906 60 L1040 60 L1060 50 L1076 72 L1092 36 L1110 86 L1126 52 L1144 66 L1160 60 L1440 60"/>
+  </svg>
+  <h2>Em 2020 escolhi a pista.<br><span>Era onde era mais feliz.</span></h2>
+  <p>O horizonte do mar passa a ser a onda da faixa que está a tocar.</p>
+</section>
+
+<!-- 2. hero -->
+<section class="q d2" id="d2a">
+  <img class="foto" src="img/d2-ceu.png" alt="">
+  <div class="tira"></div>
+  <div class="nav"><b>YURI DAGOT</b><a href="#">Fala comigo</a></div>
+  <div class="placa"><h1>SOU DE MAPUTO</h1><p>Vivo em Lisboa. Passei a vida a juntar pessoas<br>e agora construo as coisas que eu próprio precisava.</p></div>
+</section>
+
+<!-- 2. pico -->
+<section class="q d2 cave" id="d2b">
+  <img class="foto" src="img/d2-cave.png" alt="">
+  <div class="tira"></div>
+  <div class="nav"><b>YURI DAGOT</b><a href="#">Fala comigo</a></div>
+  <div class="placa"><h1>POR BAIXO DA CIDADE</h1><p>Os padrões da parede pulsam com a música, se carregares no som.</p></div>
+</section>
+
+<!-- 3. hero -->
+<section class="q d3" id="d3a">
+  <div class="nav"><b>Yuri Dagot</b><div class="ceus"><span>Maputo <i>21:04 · 27°</i></span><span>Lisboa <i>20:04 · 19°</i></span></div><a href="#">Fala comigo</a></div>
+  <div class="nome">dagotinho</div>
+  <div class="pessoa">foto real<br>de 2012</div>
+  <p class="legenda"><small>Maputo, 2012</small>Aos 16 anos já era dagotinho: o nome dos jogos, que ainda hoje é o meu domínio.</p>
+  <div class="capitulos"><b>dagotinho</b><br>WhyViiDee<br>Dagô<br>Yuri Dagot</div>
+</section>
+
+<!-- 3. pico -->
+<section class="q d3 morph" id="d3b">
+  <div class="nav"><b style="color:#101114">Yuri Dagot</b><div class="ceus" style="color:#101114"><span>Maputo <i style="color:#101114">21:04 · 27°</i></span><span>Lisboa <i style="color:#101114">20:04 · 19°</i></span></div><a href="#" style="background:#101114;color:#EDEBE6">Fala comigo</a></div>
+  <div class="cacos"><span style="left:90px;top:0;transform:rotate(-12deg)">W</span><span style="left:260px;top:60px;transform:rotate(9deg)">h</span><span style="left:1080px;top:-10px;transform:rotate(18deg)">V</span><span style="left:1230px;top:70px;transform:rotate(-7deg)">ii</span><span style="left:560px;top:-40px;transform:rotate(4deg);opacity:.5">y</span></div>
+  <div class="nome">Dagô</div>
+  <p class="legenda" style="color:#101114"><small style="color:#101114;opacity:.7">18 de Outubro de 2021</small>WhyViiDee desfaz-se e volta a montar-se como Dagô. Lá dentro, os palcos.</p>
+</section>
+
+</body>
+</html>
