@@ -16,7 +16,6 @@
   --indico: #0E2A30;
   --noite: #0B0D10;
   --espuma: #E9EFEA;
-  --betao: #8C8F8A;
   --tingido: #9DB3B0;
   --agua: #35504F;
   --sodio: #F2A541;
@@ -30,16 +29,19 @@ html { overflow-x: clip; width: 100%; background: var(--noite); }
 body {
   background: var(--noite);
   color: var(--espuma);
-  font-family: "Satoshi", system-ui, sans-serif;
+  font-family: var(--font-sans);
   overflow-x: clip;
   width: 100%;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--sodio); outline-offset: 4px; }
+.frente a:focus-visible { outline-color: var(--noite); }
+
 ::selection { background: var(--sodio); color: var(--noite); }
 a, button { -webkit-tap-highlight-color: transparent; }
-h1, h2, h3 { font-family: "Zodiak", Georgia, serif; font-weight: 700; letter-spacing: -0.02em; text-wrap: balance; }
+h1, h2, h3 { font-family: var(--font-serif); font-weight: 700; letter-spacing: -0.02em; text-wrap: balance; }
 
 /* ============================================================ navegação: o nome, os dois céus, fala comigo */
 .nav {
@@ -48,7 +50,7 @@ h1, h2, h3 { font-family: "Zodiak", Georgia, serif; font-weight: 700; letter-spa
   padding: 24px var(--lado); font-size: 15px; pointer-events: none;
 }
 .nav > * { pointer-events: auto; }
-.nav-nome { font-family: "Zodiak", Georgia, serif; font-weight: 700; font-size: 22px; color: var(--espuma); text-decoration: none; justify-self: start; text-shadow: 0 1px 14px rgba(11, 13, 16, 0.45); }
+.nav-nome { font-family: var(--font-serif); font-weight: 700; font-size: 22px; color: var(--espuma); text-decoration: none; justify-self: start; text-shadow: 0 1px 14px rgba(11, 13, 16, 0.45); }
 .nav-nome-troca { display: inline-block; animation: nome-entra 0.5s ease both; }
 @keyframes nome-entra { from { opacity: 0; transform: translateY(8px); } }
 .ceus { display: flex; gap: 22px; color: var(--tingido); background: rgba(11, 13, 16, 0.55); padding: 7px 14px; }
@@ -170,13 +172,13 @@ h1, h2, h3 { font-family: "Zodiak", Georgia, serif; font-weight: 700; letter-spa
 .caso-visitar:hover { background: var(--areia); }
 .caso-numeros { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 28px var(--lado); margin: 96px 0 0; padding: 36px 0; border-top: 1px solid var(--fio); border-bottom: 1px solid var(--fio); }
 .caso-numeros dt { font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--tingido); }
-.caso-numeros dd { margin: 10px 0 0; font-family: "Zodiak", Georgia, serif; font-weight: 700; font-size: clamp(30px, 3.4vw, 48px); line-height: 1; color: var(--espuma); }
+.caso-numeros dd { margin: 10px 0 0; font-family: var(--font-serif); font-weight: 700; font-size: clamp(30px, 3.4vw, 48px); line-height: 1; color: var(--espuma); }
 .caso-historia section { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 24px var(--lado); padding: 44px 0; border-bottom: 1px solid var(--fio); }
 .caso-historia h2 { font-size: clamp(24px, 2.2vw, 32px); line-height: 1.1; color: var(--sodio); }
 .caso-historia p { max-width: 680px; font-size: 18px; line-height: 1.65; color: var(--espuma); }
 .caso-historia .caso-tech { color: var(--tingido); }
 .caso-seguinte { display: grid; grid-template-columns: 1fr 1fr; gap: var(--lado); padding: 64px 0 96px; }
-.caso-seguinte a { display: flex; flex-direction: column; gap: 10px; font-family: "Zodiak", Georgia, serif; font-weight: 700; font-size: clamp(24px, 2.6vw, 38px); line-height: 1.1; color: var(--espuma); text-decoration: none; }
+.caso-seguinte a { display: flex; flex-direction: column; gap: 10px; font-family: var(--font-serif); font-weight: 700; font-size: clamp(24px, 2.6vw, 38px); line-height: 1.1; color: var(--espuma); text-decoration: none; }
 .caso-seguinte a:last-child { text-align: right; }
 .caso-seguinte a span { font-family: var(--font-sans); font-weight: 500; font-size: 14px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--tingido); }
 .caso-seguinte a:hover { color: var(--sodio); }

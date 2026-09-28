@@ -13,8 +13,8 @@ const PARAGENS: Paragem[] = [
     lugar: "Maputo · 1996 a 2014",
     titulo: "Cresci à beira do Índico.",
     texto:
-      "Na Escola Portuguesa de Moçambique era guarda-redes da equipa de futsal que foi campeã da cidade em 2012, e secretário da associação de estudantes. Aos 15 anos o meu irmão chegou da Cidade do Cabo com um controlador de DJ, e eu nunca mais o larguei.",
-    fotos: [{ src: "/fotos/maputo-piscina.webp", alt: "O Yuri em criança, dentro de uma piscina em Maputo", legenda: "Maputo, em criança", w: 1800, h: 1645 }],
+      "Na Escola Portuguesa de Moçambique era guarda-redes da equipa de futsal que foi campeã da cidade em 2012, e fazia parte da associação de estudantes. Tinha 15 anos quando o meu irmão chegou da Cidade do Cabo com um controlador de DJ, e nunca mais o larguei.",
+    fotos: [{ src: "/fotos/maputo-piscina.webp", alt: "O Yuri em criança, dentro de uma piscina em Maputo", legenda: "Maputo, em criança", w: 1715, h: 1645 }],
     fundo: "/voo/paragem-1.webp",
   },
   {
@@ -22,8 +22,8 @@ const PARAGENS: Paragem[] = [
     lugar: "Lisboa · 2014",
     titulo: "Vim estudar. Fiquei a tocar.",
     texto:
-      "Entrei em Engenharia Informática no Técnico. Uma festa Erasmus deu numa residência semanal e passei a ser WhyViiDee, das minhas iniciais: Y, V, D. Na ESN Lisboa fui RP e o DJ de todas as festas.",
-    fotos: [{ src: "/fotos/setup-2018.webp", alt: "O Yuri a sorrir atrás do primeiro setup de DJ, em casa, com um flamingo insuflável", legenda: "O primeiro setup em casa, 2018", w: 1400, h: 1400 }],
+      "Entrei em Engenharia Informática. Uma festa Erasmus deu numa residência semanal, a tocar como WhyViiDee, o nome que já trazia de Maputo, feito das minhas iniciais: Y, V, D. Na ESN Lisboa fui RP e o DJ de todas as festas.",
+    fotos: [{ src: "/fotos/setup-2018.webp", alt: "O Yuri a sorrir atrás do setup de DJ, em casa, com um flamingo insuflável", legenda: "O setup em casa, 2018", w: 1400, h: 1400 }],
     fundo: "/voo/paragem-2.webp",
   },
   {
@@ -31,8 +31,8 @@ const PARAGENS: Paragem[] = [
     lugar: "Cais do Sodré · desde 2020",
     titulo: (
       <>
-        Em 2020 escolhi a pista.
-        <span>Era onde era mais feliz.</span>
+        Em 2020 escolhi a pista.{" "}
+        <span>É lá que sou mais feliz.</span>
       </>
     ),
     texto:
@@ -61,11 +61,13 @@ function tempoDoVideo(p: number) {
   return 1;
 }
 
-function caminhoDaOnda(forca: number, t: number) {
+// vao: meia largura (em unidades do viewBox) da abertura atrás da silhueta na Marginal, ao centro, para a linha não lhe cortar o pescoço
+function caminhoDaOnda(forca: number, t: number, vao = 0) {
   let d = "M0 60";
   for (let x = 0; x <= 1000; x += 8) {
     const env = Math.sin(x * 0.011 + 0.6) ** 2 * Math.sin(x * 0.0037 + 1.3) ** 2;
-    d += ` L${x} ${(60 + forca * 52 * env * Math.sin(x * 0.19 + t * 9)).toFixed(1)}`;
+    const salta = Math.abs(x - 500) < vao;
+    d += ` ${salta ? "M" : "L"}${x} ${(60 + forca * 52 * env * Math.sin(x * 0.19 + t * 9)).toFixed(1)}`;
   }
   return d;
 }
@@ -76,19 +78,21 @@ export default function Voo() {
   useEffect(() => {
     const el = raiz.current!;
     const paragens = [...el.querySelectorAll<HTMLElement>(".paragem")];
+    const abre = el.querySelector<HTMLElement>(".voo-abre")!;
     const linha = el.querySelector<SVGSVGElement>(".voo-linha")!;
     const onda = linha.querySelector("path")!;
     const ecraGrande = () => innerWidth >= 1000 && innerHeight >= 800;
+    const vaoDaSilhueta = () => (innerWidth < 700 ? 52 : 22); // a silhueta ocupa mais largura no telemóvel
     const mexe = matchMedia("(prefers-reduced-motion: no-preference)").matches;
 
     if (!mexe) {
       // Sem movimento: páginas paradas, e o nome muda à medida que cada paragem aparece.
-      onda.setAttribute("d", caminhoDaOnda(0, 0));
+      onda.setAttribute("d", caminhoDaOnda(0, 0, vaoDaSilhueta()));
       const obs = new IntersectionObserver(
         (es) => es.forEach((e) => e.isIntersecting && anunciarCapitulo(Number((e.target as HTMLElement).dataset.capitulo))),
         { threshold: 0.5 }
       );
-      paragens.forEach((p) => obs.observe(p));
+      [abre, ...paragens].forEach((p) => obs.observe(p));
       return () => obs.disconnect();
     }
 
@@ -99,7 +103,6 @@ export default function Voo() {
     const tela = el.querySelector<HTMLCanvasElement>(".voo-tela")!;
     const ctx = tela.getContext("2d")!;
     const pista = el.querySelector<HTMLElement>(".voo-pista")!;
-    const abre = el.querySelector<HTMLElement>(".voo-abre")!;
     const frames: HTMLImageElement[] = new Array(TOTAL);
     const url = (i: number) => `${pasta}/f_${String(i + 1).padStart(4, "0")}.webp`;
     const carregar = (i: number) => {
@@ -140,7 +143,7 @@ export default function Voo() {
       return img === frames[i];
     };
 
-    let alvo = 0, mostrado = 0, capitulo = -1, raf = 0;
+    let alvo = 0, mostrado = 0, capitulo = -1, raf = 0, visivel = true;
     const progresso = () => {
       const r = pista.getBoundingClientRect();
       return Math.min(1, Math.max(0, -r.top / (r.height - innerHeight)));
@@ -169,17 +172,25 @@ export default function Voo() {
         // o fio recua quando há texto por cima dele; na última paragem, em ecrã grande, o texto fica acima da onda
         if (n < 2 || !ecraGrande()) tapa = Math.max(tapa, v);
       });
-      linha.style.opacity = String(1 - 0.7 * tapa);
+      // em ecrã pequeno o texto ocupa a largura toda: aí o fio desaparece de todo
+      linha.style.opacity = String(1 - (ecraGrande() ? 0.7 : 1) * tapa);
       if (progresso() >= 1 && pista.getBoundingClientRect().bottom < innerHeight * 0.4) activa = 3;
       if (activa !== capitulo) { capitulo = activa; anunciarCapitulo(activa); }
 
-      onda.setAttribute("d", caminhoDaOnda(suave(passo(0.74, 0.86, mostrado)), t / 1000));
-      raf = requestAnimationFrame(laco);
+      onda.setAttribute("d", caminhoDaOnda(suave(passo(0.74, 0.86, mostrado)), t / 1000, (1 - saida) * vaoDaSilhueta()));
+      raf = visivel ? requestAnimationFrame(laco) : 0;
     };
     raf = requestAnimationFrame(laco);
+    // fora do ecrã o laço pára, e volta quando a secção reaparece
+    const vista = new IntersectionObserver(([e]) => {
+      visivel = e.isIntersecting;
+      if (visivel && !raf) raf = requestAnimationFrame(laco);
+    });
+    vista.observe(el);
 
     return () => {
       cancelAnimationFrame(raf);
+      vista.disconnect();
       clearTimeout(timer);
       removeEventListener("scroll", aoScroll);
       removeEventListener("resize", ajustar);
@@ -195,11 +206,12 @@ export default function Voo() {
           <svg className="voo-linha" viewBox="0 0 1000 120" preserveAspectRatio="none" aria-hidden="true">
             <path d="M0 60 L1000 60" />
           </svg>
-          <div className="voo-abre">
+          <div className="voo-abre" data-capitulo={0}>
             <h1>
-              Sou de Maputo.<span>Vivo em Lisboa.</span>
+              Sou de Maputo.{" "}
+              <span>Vivo em Lisboa.</span>
             </h1>
-            <p>Passei a vida a juntar pessoas, na pista e nas festas que criei. Agora construo as coisas que eu próprio precisava.</p>
+            <p>Passei a vida a juntar pessoas, na pista e nas festas que criei. Agora construo as coisas de que eu próprio precisava.</p>
             <span className="voo-sitio">Marginal, Maputo</span>
           </div>
           {PARAGENS.map((p, n) => (

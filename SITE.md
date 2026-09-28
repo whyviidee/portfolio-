@@ -88,10 +88,10 @@ Registo detalhado em `assets/PROMPTS.md`.
 - [x] anti-slop (limpo a 28 Set 2026, depois de passar os projectos para português)
 - [x] capturas por acto (1440×900, 1440×650, 1920×1080, 390×844, com e sem animações): 0 erros, fontes carregadas, sem scroll lateral
 - [x] Lighthouse telemóvel, build de produção: desempenho 95, acessibilidade 96, boas práticas 100, SEO 100. O único contraste em falta é a assinatura MWLBYD, discreta de propósito.
-- [ ] revisão independente
+- [x] revisão independente (subagente, 28 Set 2026): 8 achados P1 e 10 P2. Corrigidos todos menos dois, que ficam para o Yuri: a data do regresso ao código (2025) contra o Presenças Professor (2024), e a caixa dos céus por cima da fronteira foto/creme no Fala comigo, que aceito
 - [ ] olhos de humano (o Yuri no telemóvel dele)
 
 ## Estado
 - Onde ficámos (28 Set 2026): Fase 6 construída no ramo `redesign/historia` do repo do portfolio. Página principal nova (voo, paragens, carril de projectos, Fala comigo), páginas de projecto em português com o desenho novo, privacidade (em inglês, é a que as apps da App Store apontam) e 404.
 - Nada publicado: a Vercel publica o `master`, por isso tudo fica no ramo até ao sim do Yuri.
-- Próximo passo: revisão independente, mostrar ao Yuri, e com o sim dele fazer push do ramo para ver a pré-visualização da Vercel antes de juntar ao `master`. O voo em 1080p (2400 créditos) continua adiado.
+- Próximo passo: mostrar ao Yuri, e com o sim dele fazer push do ramo para ver a pré-visualização da Vercel antes de juntar ao `master`. O voo em 1080p (2400 créditos) continua adiado.

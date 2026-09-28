@@ -29,7 +29,7 @@ export default function Ceus() {
   }, []);
 
   return (
-    <div className="ceus" aria-label="Hora e temperatura agora em Maputo e em Lisboa">
+    <div className="ceus" role="group" aria-label="Hora e temperatura agora em Maputo e em Lisboa">
       {CIDADES.map((c, i) => (
         <span key={c.nome}>
           {c.nome}{" "}

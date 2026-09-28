@@ -79,7 +79,7 @@ export const projects: Project[] = [
   {
     slug: "lisboa-rio",
     title: "Lisboa Rio",
-    type: "Proposta de design",
+    type: "Design",
     year: 2026,
     estado: "Proposta",
     resumo: "Proposta de app para um clube à beira-rio em Lisboa: fidelização, eventos e acesso VIP.",
@@ -93,7 +93,6 @@ export const projects: Project[] = [
     highlights: [
       { label: "Ecrãs", value: "10+" },
       { label: "Funções", value: "6" },
-      { label: "Estado", value: "Proposta" },
     ],
   },
   {
@@ -103,7 +102,7 @@ export const projects: Project[] = [
     year: 2026,
     resumo: "Lê a biblioteca de um DJ, reconhece cada faixa pelo som e faz a lista para as comprar legalmente.",
     longDescription:
-      "Uma ferramenta para os DJs lerem a biblioteca de música, reconhecerem cada faixa pela impressão sonora e por vários métodos de reserva, e receberem as ligações para comprar o que falta antes de uma fiscalização da ASAE.",
+      "Uma ferramenta para os DJs lerem a biblioteca de música, reconhecerem cada faixa pela impressão sonora e por outros métodos quando o primeiro falha, e receberem as ligações para comprar o que falta antes de uma fiscalização da ASAE.",
     tech: ["Python", "Flask", "AcoustID", "MusicBrainz", "iTunes API", "Chromaprint"],
     problem:
       "Em Portugal, um DJ precisa de prova de compra de cada faixa que toca em público. Identificar à mão centenas de faixas e descobrir onde comprar cada uma é impossível.",
@@ -140,13 +139,13 @@ export const projects: Project[] = [
   {
     slug: "tokyo-jamaica",
     title: "Tokyo Jamaica",
-    type: "Proposta de design",
+    type: "Design",
     year: 2026,
     estado: "Proposta",
     resumo: "Proposta de redesenho de uma app de streaming de música, escura e fluida.",
     longDescription:
       "Proposta de redesenho de uma app de música, a explorar um visual escuro com vidro fosco, pequenas animações em cada toque e uma navegação fluida.",
-    tech: ["Figma", "React Native", "Framer Motion", "Glassmorphism"],
+    tech: ["Figma", "React Native", "Framer Motion"],
     problem: "As apps de música parecem todas iguais. Quase todas copiam o Spotify e não têm personalidade.",
     solution:
       "Um visual escuro e ousado com vidro fosco, formas de onda animadas, navegação por gestos e uma identidade própria.",
@@ -166,7 +165,7 @@ export const projects: Project[] = [
     resumo: "A app privada do nosso grupo de amigos: xitique, viagens e jogos com AI. Na App Store.",
     longDescription:
       "App nativa para um grupo de 12 amigos moçambicanos. Gere o xitique (a poupança rotativa), as viagens do grupo, as bocas geradas por AI e os jogos, com entrada biométrica e notificações.",
-    tech: ["Expo", "React Native", "TypeScript", "InstantDB", "Expo Router", "Biometrics"],
+    tech: ["Expo", "React Native", "TypeScript", "InstantDB", "Expo Router", "Biometria"],
     problem: "Gerir o xitique, saber quem já pagou e combinar as viagens do grupo pelo WhatsApp era o caos.",
     solution:
       "Uma app com o calendário de pagamentos do xitique, atalhos para o MB WAY, viagens, perfis de cada membro, gerador de bocas com AI, entrada com Face ID ou impressão digital e notificações. Com o contexto moçambicano lá dentro.",
@@ -255,7 +254,7 @@ export const projects: Project[] = [
     resumo: "Ferramentas para o Instagram de um DJ: estatísticas, publicação, legendas e calendário.",
     longDescription:
       "Conjunto de ferramentas em Python para gerir a conta de Instagram @deejay.dago. Vai buscar as estatísticas à API da Meta, escreve legendas, agenda publicações e acompanha o envolvimento.",
-    tech: ["Python", "Meta Graph API", "Instagram API", "Automation"],
+    tech: ["Python", "Meta Graph API", "Instagram API"],
     problem:
       "Manter o Instagram de um DJ obriga a publicar sempre, perceber o que resulta e adaptar o conteúdo, tudo à mão e espalhado por várias ferramentas da Meta.",
     solution:
@@ -300,8 +299,8 @@ export const projects: Project[] = [
     estado: "Em curso",
     resumo: "Um escritório de marketing com agentes de AI para os eventos da GRVVE.",
     longDescription:
-      "Um motor de marketing com AI para os conceitos da GRVVE (Fiesta Dura, Salero, Bashment, Remember, Apupu). Agentes autónomos criam conteúdo, planeiam publicações e escolhem o público. Por agora corre em simulação, com resultados só internos.",
-    tech: ["Node.js", "TypeScript", "React", "Phaser 3", "Supabase", "AI Agents"],
+      "Um motor de marketing com AI para os conceitos da GRVVE (Fiesta Dura, SALERO, Bashment, Remember, Apupu). Agentes autónomos criam conteúdo, planeiam publicações e escolhem o público. Por agora corre em simulação, com resultados só internos.",
+    tech: ["Node.js", "TypeScript", "React", "Phaser 3", "Supabase", "Agentes de AI"],
     problem:
       "Promover vários eventos recorrentes para públicos diferentes exige trabalho manual constante (publicações, stories, público, horários) que não escala.",
     solution:

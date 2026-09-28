@@ -14,7 +14,8 @@ export default function Ecra() {
 
   useEffect(() => {
     const el = raiz.current!;
-    const obs = new IntersectionObserver(([e]) => e.isIntersecting && anunciarCapitulo(3), { threshold: 0.2 });
+    // a secção pode ter milhares de px de altura: conta quando o topo passa o meio do ecrã
+    const obs = new IntersectionObserver(([e]) => e.isIntersecting && anunciarCapitulo(3), { rootMargin: "0px 0px -50% 0px" });
     obs.observe(el);
     if (!matchMedia("(prefers-reduced-motion: no-preference)").matches) return () => obs.disconnect();
 
@@ -22,10 +23,21 @@ export default function Ecra() {
     el.classList.add("mexe");
     const pista = el.querySelector<HTMLElement>(".ecra-pista")!;
     const carril = el.querySelector<HTMLElement>(".ecra-carril")!;
+    const palco = el.querySelector<HTMLElement>(".ecra-palco")!;
     let distancia = 0, raf = 0, alvo = 0, mostrado = 0;
+    // o laço só corre enquanto o carril ainda está a chegar ao sítio
+    const laco = () => {
+      mostrado += (alvo - mostrado) * 0.12;
+      if (Math.abs(alvo - mostrado) < 1e-4) mostrado = alvo;
+      // o carril chega ao fim aos 86% e segura, para dar tempo de ler o último
+      carril.style.transform = `translate3d(${-Math.min(1, mostrado / 0.86) * distancia}px,0,0)`;
+      raf = mostrado !== alvo ? requestAnimationFrame(laco) : 0;
+    };
+    const acordar = () => { if (!raf) raf = requestAnimationFrame(laco); };
     const medir = () => {
       distancia = Math.max(0, carril.scrollWidth - innerWidth);
       pista.style.height = `${innerHeight + distancia * 1.25}px`;
+      acordar();
     };
     const ro = new ResizeObserver(medir);
     ro.observe(carril);
@@ -33,22 +45,29 @@ export default function Ecra() {
     const aoScroll = () => {
       const r = pista.getBoundingClientRect();
       alvo = Math.min(1, Math.max(0, -r.top / Math.max(1, r.height - innerHeight)));
+      acordar();
     };
     addEventListener("scroll", aoScroll, { passive: true });
     aoScroll();
     mostrado = alvo;
-    const laco = () => {
-      mostrado += (alvo - mostrado) * 0.12;
-      // o carril chega ao fim aos 86% e segura, para dar tempo de ler o último
-      carril.style.transform = `translate3d(${-Math.min(1, mostrado / 0.86) * distancia}px,0,0)`;
-      raf = requestAnimationFrame(laco);
+
+    // Tab num cartão fora do ecrã: rola a página até ao ponto em que o carril o mostra, em vez de deixar o browser deslocar o palco
+    const aoFoco = (e: FocusEvent) => {
+      const cartao = (e.target as HTMLElement).closest("li");
+      if (!cartao || !distancia) return;
+      const x = Math.min(distancia, Math.max(0, cartao.getBoundingClientRect().left - carril.getBoundingClientRect().left - innerWidth * 0.1));
+      const r = pista.getBoundingClientRect();
+      scrollTo({ top: scrollY + r.top + (x / distancia) * 0.86 * (r.height - innerHeight) });
+      palco.scrollLeft = 0;
+      requestAnimationFrame(() => { palco.scrollLeft = 0; });
     };
-    raf = requestAnimationFrame(laco);
+    carril.addEventListener("focusin", aoFoco);
     return () => {
       obs.disconnect();
       ro.disconnect();
       cancelAnimationFrame(raf);
       removeEventListener("scroll", aoScroll);
+      carril.removeEventListener("focusin", aoFoco);
     };
   }, []);
 
@@ -59,7 +78,7 @@ export default function Ecra() {
           <div className="ecra-cabeca">
             <span className="ecra-lugar">Lisboa · desde 2025</span>
             <h2 id="ecra-titulo">
-              E agora construo as coisas que eu próprio precisava<span className="ecra-cursor" aria-hidden="true" />
+              E agora construo as coisas de que eu próprio precisava<span className="ecra-cursor" aria-hidden="true" />
             </h2>
             <p>
               Sempre gostei de informática. Em 2025 voltei ao código e a AI deixou-me fazer sozinho o que antes pedia uma equipa: apps na App Store, sites para
