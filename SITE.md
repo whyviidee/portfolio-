@@ -95,6 +95,5 @@ Registo detalhado em `assets/PROMPTS.md`.
 - 29 Set 2026: sem a linha do horizonte nem a onda. E o voo anda sempre com o scroll, mesmo com as animações do sistema desligadas (o PC do Yuri tem-nas desligadas e ele via só fotografias); nesse caso fica sem amortecimento.
 
 ## Estado
-- Onde ficámos (28 Set 2026): Fase 6 construída no ramo `redesign/historia` do repo do portfolio. Página principal nova (voo, paragens, carril de projectos, Fala comigo), páginas de projecto em português com o desenho novo, privacidade (em inglês, é a que as apps da App Store apontam) e 404.
-- Nada publicado: a Vercel publica o `master`, por isso tudo fica no ramo até ao sim do Yuri.
-- Próximo passo: mostrar ao Yuri, e com o sim dele fazer push do ramo para ver a pré-visualização da Vercel antes de juntar ao `master`. O voo em 1080p (2400 créditos) continua adiado.
+- No ar desde 29 Set 2026 em https://www.dagotinho.pt (o `master` no GitHub avançou para o ramo `redesign/historia`). O `master` local desta máquina é uma cópia velha com um commit antigo por publicar ("feat: portefolio interactivo"): não usar, trabalhar no ramo ou fazer reset ao `origin/master` com o sim do Yuri.
+- Por decidir com o Yuri: o que ele "não sente" no site (disse-o ao ver só as fotografias, antes de o voo andar no PC dele); voltou ao código em 2024 ou 2025; voo em 1080p (2400 créditos).
