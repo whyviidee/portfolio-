@@ -74,7 +74,8 @@ Referências gerais em `.claude/skills/site/references/estado-da-arte.md` e `sit
 ## Assets
 Registo detalhado em `assets/PROMPTS.md`.
 - Bíblia aprovada:
-- Créditos gastos até agora: 0
+- Créditos gastos até agora: ~1620 (4 imagens das direcções ~420; voo Wan 3.0 720p 30 s, 1200).
+- Voo da prova: `docs/direccoes/voo-wan-720p.mp4` (fora do git). Resultou: horizonte à mesma altura do princípio ao fim, céu a escurecer, entrada contínua no armazém. Falhou: a ponte nasce na água aos ~12 s; o armazém aparece à frente do Cristo Rei (geografia trocada); frames a 12 MB.
 
 ## Verificação
 - [ ] anti-slop
@@ -84,5 +85,5 @@ Registo detalhado em `assets/PROMPTS.md`.
 - [ ] olhos de humano
 
 ## Estado
-- Onde ficámos: Fase 1 (entrevista) e Fase 2 (estudo) a arrancar.
-- Próximo passo: 2 ou 3 direcções visuais.
+- Onde ficámos: Fase 4, prova do pico feita (`pico/`, vídeo de 10 s mandado ao Yuri a 28 Set 2026). À espera da aprovação.
+- Próximo passo: com aprovação, corrigir os defeitos do voo, gerar em 1080p (2400 créditos, pede sim) e passar à Fase 5 (curadoria das fotos reais no Google Fotos e no Instagram, recorte do Yuri).
