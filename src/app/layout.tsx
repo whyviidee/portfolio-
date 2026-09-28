@@ -1,44 +1,34 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Nav from "@/components/Nav";
-import Footer from "@/components/Footer";
-import Cursor from "@/components/Cursor";
+import Navegacao from "@/components/historia/Navegacao";
+import Rodape from "@/components/historia/Rodape";
 import { SITE_URL } from "@/data/site";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const DESCRICAO =
+  "Sou de Maputo e vivo em Lisboa. Passei a vida a juntar pessoas, na pista e nas festas que criei, e agora construo apps, sites e ferramentas.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Yuri Dagot — Full-Stack Developer",
-    template: "%s — Yuri Dagot",
+    default: "Yuri Dagot · De Maputo a Lisboa",
+    template: "%s · Yuri Dagot",
   },
-  description:
-    "Full-stack developer from Mozambique. Building mobile apps, SaaS platforms, and websites that ship.",
-  keywords: ["developer", "full-stack", "mozambique", "react", "next.js", "mobile", "expo", "portfolio"],
+  description: DESCRICAO,
+  keywords: ["Yuri Dagot", "Dagô", "Maputo", "Lisboa", "programador", "apps", "websites", "DJ", "portfolio"],
   authors: [{ name: "Yuri Dagot" }],
   creator: "Yuri Dagot",
   openGraph: {
-    title: "Yuri Dagot — Full-Stack Developer",
-    description: "Building apps, platforms & websites — from Mozambique to the world.",
+    title: "Yuri Dagot · De Maputo a Lisboa",
+    description: DESCRICAO,
     url: SITE_URL,
     siteName: "Yuri Dagot",
-    locale: "en_US",
+    locale: "pt_PT",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Yuri Dagot — Full-Stack Developer",
-    description: "Building apps, platforms & websites — from Mozambique to the world.",
+    title: "Yuri Dagot · De Maputo a Lisboa",
+    description: DESCRICAO,
   },
   robots: {
     index: true,
@@ -50,8 +40,10 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "Yuri Dagot",
-  alternateName: "DJ Dagô",
-  jobTitle: "Full-Stack Developer",
+  alternateName: ["Dagô", "WhyViiDee", "dagotinho"],
+  jobTitle: "Programador e DJ",
+  birthPlace: "Maputo, Moçambique",
+  homeLocation: "Lisboa, Portugal",
   url: SITE_URL,
   sameAs: [
     "https://github.com/whyviidee",
@@ -67,18 +59,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="pt">
       <head>
+        <link rel="preload" href="/fonts/zodiak-700.woff2" as="font" type="font/woff2" crossOrigin="" />
+        <link rel="preload" href="/fonts/satoshi-400.woff2" as="font" type="font/woff2" crossOrigin="" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <Cursor />
-        <Nav />
+      <body className="antialiased">
+        <Navegacao />
         {children}
-        <Footer />
+        <Rodape />
       </body>
     </html>
   );

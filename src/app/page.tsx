@@ -1,19 +1,13 @@
-import dynamic from "next/dynamic";
-import Hero from "@/components/Hero";
-
-const Projects = dynamic(() => import("@/components/Projects"));
-const About = dynamic(() => import("@/components/About"));
-const Experience = dynamic(() => import("@/components/Experience"));
-const Contact = dynamic(() => import("@/components/Contact"));
+import Voo from "@/components/historia/Voo";
+import Ecra from "@/components/historia/Ecra";
+import DeFrente from "@/components/historia/DeFrente";
 
 export default function Home() {
   return (
     <main>
-      <Hero />
-      <Projects />
-      <About />
-      <Experience />
-      <Contact />
+      <Voo />
+      <Ecra />
+      <DeFrente />
     </main>
   );
 }

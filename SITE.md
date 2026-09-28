@@ -58,18 +58,23 @@ Referências gerais em `.claude/skills/site/references/estado-da-arte.md` e `sit
 ### Actos
 | # | Acto | Fundo | Verbo | Frame sem animações |
 |---|---|---|---|---|
+| 0 | Abertura "Sou de Maputo. Vivo em Lisboa." | Índico ao anoitecer, frame 1 do voo | ler | `public/voo/inicio.webp` com o título |
+| 1 | Maputo, 1996 a 2014 | voo parado na Marginal | parar | `paragem-1.webp` + foto da piscina |
+| 2 | Lisboa, 2014 | voo parado sobre o Tejo | parar | `paragem-2.webp` + setup de 2018 |
+| 3 | Cais do Sodré, desde 2020 | dentro do armazém, a linha vira onda sonora | parar | `paragem-3.webp` + Rock in Rio |
+| 4 | "E agora construo as coisas que eu próprio precisava" | noite, o carril desliza de lado | deslizar | lista horizontal com scroll próprio |
+| 5 | Fala comigo | espuma clara, ele de frente | escolher | igual |
 
 ### Tokens
-- Paleta (6 papéis e um acento, em hex):
+- Paleta (6 papéis e um acento, em hex): índico `#0E2A30`, noite `#0B0D10`, espuma `#E9EFEA`, betão `#8C8F8A`, tingido `#9DB3B0`, água `#35504F`; acento sódio `#F2A541`, com areia `#F2D5A8` no hover.
 - Fontes (escolhidas a 28 Set 2026, teste em `docs/direccoes/fontes.jpg`): **Zodiak 700** nos títulos e no nome; **Satoshi 400/700** no texto e na navegação.
-- Raio dos cantos:
-- NUNCAs deste site:
+- Raio dos cantos: zero. Botões e fotos com esquina viva.
+- NUNCAs deste site: cartões com sombra, gradientes roxos, emojis, contadores a subir, marquee, travessões, a palavra "demo", o Técnico em destaque.
 
 ## Escada de ferramentas
-- CSS scroll-driven:
-- GSAP:
-- OGL:
-- Three.js:
+- JavaScript simples chega: um `requestAnimationFrame` com amortecimento conduz o voo (canvas) e o carril. Zero dependências novas; o `framer-motion` e o `lucide-react` do site antigo saíram.
+- CSS scroll-driven: não usado, o voo precisa de paragens por troço (tabela `TRAJECTO` em `Voo.tsx`).
+- GSAP, OGL, Three.js: desnecessários.
 
 ## Assets
 Registo detalhado em `assets/PROMPTS.md`.
@@ -80,12 +85,13 @@ Registo detalhado em `assets/PROMPTS.md`.
 - Voo da prova: `docs/direccoes/voo-wan-720p.mp4` (fora do git). Resultou: horizonte à mesma altura do princípio ao fim, céu a escurecer, entrada contínua no armazém. Falhou: a ponte nasce na água aos ~12 s; o armazém aparece à frente do Cristo Rei (geografia trocada); frames a 12 MB.
 
 ## Verificação
-- [ ] anti-slop
-- [ ] capturas por acto (3 alturas, 390px, sem animações)
-- [ ] Lighthouse telemóvel
+- [x] anti-slop (limpo a 28 Set 2026, depois de passar os projectos para português)
+- [x] capturas por acto (1440×900, 1440×650, 1920×1080, 390×844, com e sem animações): 0 erros, fontes carregadas, sem scroll lateral
+- [x] Lighthouse telemóvel, build de produção: desempenho 95, acessibilidade 96, boas práticas 100, SEO 100. O único contraste em falta é a assinatura MWLBYD, discreta de propósito.
 - [ ] revisão independente
-- [ ] olhos de humano
+- [ ] olhos de humano (o Yuri no telemóvel dele)
 
 ## Estado
-- Onde ficámos: Fase 4, prova do pico feita (`pico/`, vídeo de 10 s mandado ao Yuri a 28 Set 2026). À espera da aprovação.
-- Próximo passo: com aprovação, corrigir os defeitos do voo, gerar em 1080p (2400 créditos, pede sim) e passar à Fase 5 (curadoria das fotos reais no Google Fotos e no Instagram, recorte do Yuri).
+- Onde ficámos (28 Set 2026): Fase 6 construída no ramo `redesign/historia` do repo do portfolio. Página principal nova (voo, paragens, carril de projectos, Fala comigo), páginas de projecto em português com o desenho novo, privacidade (em inglês, é a que as apps da App Store apontam) e 404.
+- Nada publicado: a Vercel publica o `master`, por isso tudo fica no ramo até ao sim do Yuri.
+- Próximo passo: revisão independente, mostrar ao Yuri, e com o sim dele fazer push do ramo para ver a pré-visualização da Vercel antes de juntar ao `master`. O voo em 1080p (2400 créditos) continua adiado.
