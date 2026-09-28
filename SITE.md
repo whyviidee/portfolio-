@@ -7,9 +7,9 @@ Fonte de verdade do site. Tudo o que se decide vem para aqui. Primeiro site feit
 - Em frase dele (aprovada a 28 Set 2026): "Sou de Maputo, vivo em Lisboa. Passei a vida a juntar pessoas (na pista, nas festas que criei) e agora construo as coisas que eu próprio precisava."
 - Para quem é o site: **toda a gente** (resposta dele, 28 Set 2026). Não é um site de DJ nem só de programação.
 - O que o visitante tem de fazer ao sair (aprovado a 28 Set 2026): uma só acção, **"Fala comigo"**, que se abre em três caminhos: tenho um projecto para construir / tenho um evento / só quero dizer olá (Instagram).
-- Material real disponível: 170 posts no Instagram @deejay.dago (2015 a 2026), vídeos no YouTube @MrYuridagot, o vídeo da Vibez (2020), logos DJ em `PROJECTOS/dj-webpage/assets/logodjdago/`. No repo não há fotos nem vídeos. **Autorizado a 28 Set 2026: usar as fotos e vídeos do Instagram**, com crédito aos fotógrafos das legendas (@_rafa_r_, @jonymorenhoz, @olsonferreira_, @joao_andre_18, @cyrilletaczynski e outros). Fotos antigas de Maputo: perguntadas, sem resposta ainda. **Google Fotos autorizado a 28 Set 2026** (usar pelo Chrome dele): 714 GB, e o mais antigo é de **Mai 2017** (palco a preto e branco, cartão "SALERO"); não há nada de 2012. Há Maputo de **Abr 2026** (a viagem dos anos da família). Curadoria por capítulo na Fase 5, com pesquisa no próprio Google Fotos (Maputo, Estocolmo, Rock in Rio, Coimbra, palco), e a lista final aprovada por ele antes de usar: há fotos privadas e outras pessoas.
-- Tom (três palavras): (por perguntar)
-- Nunca pode parecer: site feito por AI; template; "MEGA básico" (palavras dele sobre o método antigo). O portfolio actual tem 68 ocorrências no anti-slop.
+- Material real disponível: 170 posts no Instagram @deejay.dago (2015 a 2026), vídeos no YouTube @MrYuridagot, o vídeo da Vibez (2020), logos DJ em `PROJECTOS/dj-webpage/assets/logodjdago/`. No repo não há fotos nem vídeos. **Autorizado a 28 Set 2026: usar as fotos e vídeos do Instagram**, com crédito aos fotógrafos das legendas (@_rafa_r_, @jonymorenhoz, @olsonferreira_, @joao_andre_18, @cyrilletaczynski e outros). Fotos antigas de Maputo: perguntadas, sem resposta ainda. **Google Fotos autorizado a 28 Set 2026** (usar pelo Chrome dele): 714 GB, e o mais antigo é de **Mai 2017** (palco a preto e branco, cartão "SALERO"); não há nada de 2012. Há Maputo de **Abr 2026** (a viagem dos anos da família). Curadoria por capítulo na Fase 5, com pesquisa no próprio Google Fotos (Maputo, Estocolmo, Rock in Rio, Coimbra, palco), e a lista final aprovada por ele antes de usar: há fotos privadas e outras pessoas. **Só fotos bonitas e com definição**; se não tiverem, melhorar a partir da original (OpenArt ou Codex), sem mudar a cara.
+- Tom (três palavras, aprovadas a 28 Set 2026): **caloroso, confiante, curioso**.
+- Nunca pode parecer: um CV corporativo; site feito por AI; template; "MEGA básico" (palavras dele sobre o método antigo). O portfolio actual tem 68 ocorrências no anti-slop.
 - Sites de que gosta: do artigo da Webflow, só a ideia da Amanda Lee Peers (a vida em capítulos), não o visual. Dos vídeos do Opus 5.5: o voo de drone conduzido pelo scroll, mas o design desses sites "ainda tem muito look de AI".
 - Prazo, créditos, alojamento: Vercel (projecto `portfolio`, domínio www.dagotinho.pt); OpenArt com 16 134 créditos a 28 Set 2026.
 
@@ -20,12 +20,31 @@ Fonte de verdade do site. Tudo o que se decide vem para aqui. Primeiro site feit
 - Os projectos reais nunca se chamam "demo". Os case studies em `/projects/[slug]` e o SEO mantêm-se.
 
 ## Estudo
-| Site | Sector | Técnica | Porque importa |
-|---|---|---|---|
+Estudo de 28 Set 2026 (sites pessoais que contam uma vida). Capturas no scratchpad da sessão, pasta `estudo-portfolio\`.
 
-Referências gerais em `.claude/skills/site/references/estado-da-arte.md`.
+| Site | Técnica | Porque importa |
+|---|---|---|
+| [Roman Jean-Elie](https://www.romanjeanelie.com/) | Next e R3F; personagem a dançar num "ecrã" que muda de sítio; máscara WHO; régua Cinema 2008 / Teatro 2013 / Código 2020 com vídeo dentro das letras | Três vidas com três elementos só. Falha: texto sobreposto nas transições, bloqueia o telemóvel |
+| [Where is Paul?](https://paulvisciano.com/apps/where-is-paul/) | Globo globe.gl; a cor de cada sítio são as **noites** lá dormidas; cada momento tem URL próprio; saudação noutra língua a cada visita | Mede uma vida em noites, não em fama. Falha: é app, sem início nem pico |
+| [Room 1112](https://ljwkelly.com/room1112) | Quarto em loop, momento aleatório, os detalhes mudam entre visitas | A memória como coisa que se reescreve |
+| [makimum.dev](https://makimum.dev/) | Quarto Three.js de código (349 KB gz); céu e tempo reais de Helsínquia; o conteúdo todo também em texto | Site diferente consoante a hora real; a versão em texto resolve o modo sem animações |
+| [Stas Bondar](https://www.stabondar.com/) | "Sobre mim" em texto com física (Matter.js) | A biografia vira objecto |
+| [Daiki Fujita](https://da-san333.com/) | A loja de electrónica da família e o Paint do Windows 95 viram a linguagem visual inteira | A infância como gramática do site |
+| [Robert Huynh](https://huynhrobert.com/) | Metáfora de jogo de tabuleiro (a paixão dele) | Aviso: metáfora certa, execução de template (creme, pills, CHAPTER 04, cartões iguais), nada se joga de verdade |
 
-O que o sector inteiro faz e nós não vamos fazer: (depois do estudo)
+Referências gerais em `.claude/skills/site/references/estado-da-arte.md` e `sites-desmontados.md`.
+
+**O que o sector inteiro faz e nós não vamos fazer:** nome gigante em grotesca condensada no hero; "Hi, I'm X" ou preloader WELCOME; pills de rótulos por baixo do nome; ponto verde LIVE a pulsar; "CHAPTER 01" e "01 / 08"; timeline vertical com linha e pontos; grelha de cartões iguais; números-troféu em caixas; faixa de logos de colaborações; mapa com pins em fotos redondas; quarto 3D de objectos clicáveis; a história num parágrafo cronológico separado da obra; creme com grotesca e mono; bloquear o telemóvel.
+
+**Ideias de fio e pico que saíram do estudo** (para as direcções):
+1. Uma linha Maputo–Lisboa desenhada, com a espessura ou a cor a medir o tempo vivido (noites, como o Paul).
+2. Régua proporcional aos anos reais, com a cidade ou a pista a aparecer dentro das letras do nome.
+3. Um traço que muda o que mede: som da rua de Maputo, depois a waveform de uma faixa, depois um cursor de terminal.
+4. O nome que muda por capítulo (Yuri Dagot, WhyViiDee, Dagô, dagotinho), com o nome real como âncora.
+5. Dois céus reais: hora e tempo de Maputo e de Lisboa agora, lado a lado.
+6. Tracklist como índice: capítulos como faixas, o activo "a tocar".
+7. Quem volta ao site entra por outro capítulo.
+8. Cada momento com URL próprio (`/maputo/1996`) e o conteúdo todo também em texto.
 
 ## Direcção escolhida
 - Motif:
