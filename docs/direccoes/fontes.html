@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<title>Fontes</title>
+<link href="fontes.css" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #0c0c0c; width: 1440px; }
+  .q { width: 1440px; height: 900px; position: relative; overflow: hidden; color: #E9EFEA; }
+  .foto { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .nav { position: absolute; top: 34px; left: 56px; right: 56px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; z-index: 5; font-size: 15px; }
+  .nav .nome { font-size: 19px; }
+  .nav .ceus { display: flex; gap: 28px; color: #C9D6D3; }
+  .nav .ceus b { color: #E9EFEA; font-weight: 500; }
+  .nav a { justify-self: end; text-decoration: none; color: #0B0D10; background: #F2A541; padding: 10px 18px; font-weight: 700; }
+  .horizonte { position: absolute; left: 0; right: 0; top: 57.3%; height: 1.5px; background: #E9EFEA; opacity: .85; z-index: 3; }
+  h1 { position: absolute; left: 56px; top: 150px; font-size: 104px; line-height: .98; letter-spacing: -.02em; z-index: 4; text-shadow: 0 2px 30px rgba(14,42,48,.35); }
+  h1 span { display: block; color: #F2D5A8; }
+  .lede { position: absolute; left: 60px; top: 392px; width: 480px; font-size: 20px; line-height: 1.55; z-index: 4; }
+  .ano { position: absolute; right: 56px; top: 57.3%; transform: translateY(-140%); font-size: 14px; letter-spacing: .08em; z-index: 4; }
+  .rotulo { position: absolute; left: 56px; bottom: 36px; z-index: 6; background: #0B0D10; color: #F2A541; font: 700 22px 'W Satoshi'; padding: 10px 16px; }
+
+  .fA h1, .fA .nav .nome { font-family: 'W Cabinet Grotesk'; font-weight: 800; }
+  .fA, .fA .lede, .fA .ano { font-family: 'W Satoshi'; }
+
+  .fB h1, .fB .nav .nome { font-family: 'W Clash Grotesk'; font-weight: 600; letter-spacing: -.01em; }
+  .fB, .fB .lede, .fB .ano { font-family: 'W Satoshi'; }
+
+  .fC h1, .fC .nav .nome { font-family: 'W General Sans'; font-weight: 600; letter-spacing: -.035em; }
+  .fC, .fC .lede, .fC .ano { font-family: 'W General Sans'; }
+
+  .fD h1, .fD .nav .nome { font-family: 'W Zodiak'; font-weight: 700; letter-spacing: -.02em; }
+  .fD, .fD .lede, .fD .ano { font-family: 'W Satoshi'; }
+</style>
+</head>
+<body>
+<section class="q fA">
+  <img class="foto" src="img/d1-marginal.png" alt="">
+  <div class="nav"><span class="nome">dagotinho</span><div class="ceus"><span>Maputo <b>21:04 · 27°</b></span><span>Lisboa <b>20:04 · 19°</b></span></div><a href="#">Fala comigo</a></div>
+  <h1>Sou de Maputo.<span>Vivo em Lisboa.</span></h1>
+  <p class="lede">Passei a vida a juntar pessoas, na pista e nas festas que criei. Agora construo as coisas que eu próprio precisava.</p>
+  <div class="ano">MARGINAL, MAPUTO · 1996</div>
+  <div class="horizonte"></div>
+  <div class="rotulo">A · Cabinet Grotesk + Satoshi</div>
+</section>
+<section class="q fB">
+  <img class="foto" src="img/d1-marginal.png" alt="">
+  <div class="nav"><span class="nome">dagotinho</span><div class="ceus"><span>Maputo <b>21:04 · 27°</b></span><span>Lisboa <b>20:04 · 19°</b></span></div><a href="#">Fala comigo</a></div>
+  <h1>Sou de Maputo.<span>Vivo em Lisboa.</span></h1>
+  <p class="lede">Passei a vida a juntar pessoas, na pista e nas festas que criei. Agora construo as coisas que eu próprio precisava.</p>
+  <div class="ano">MARGINAL, MAPUTO · 1996</div>
+  <div class="horizonte"></div>
+  <div class="rotulo">B · Clash Grotesk + Satoshi</div>
+</section>
+<section class="q fC">
+  <img class="foto" src="img/d1-marginal.png" alt="">
+  <div class="nav"><span class="nome">dagotinho</span><div class="ceus"><span>Maputo <b>21:04 · 27°</b></span><span>Lisboa <b>20:04 · 19°</b></span></div><a href="#">Fala comigo</a></div>
+  <h1>Sou de Maputo.<span>Vivo em Lisboa.</span></h1>
+  <p class="lede">Passei a vida a juntar pessoas, na pista e nas festas que criei. Agora construo as coisas que eu próprio precisava.</p>
+  <div class="ano">MARGINAL, MAPUTO · 1996</div>
+  <div class="horizonte"></div>
+  <div class="rotulo">C · General Sans</div>
+</section>
+<section class="q fD">
+  <img class="foto" src="img/d1-marginal.png" alt="">
+  <div class="nav"><span class="nome">dagotinho</span><div class="ceus"><span>Maputo <b>21:04 · 27°</b></span><span>Lisboa <b>20:04 · 19°</b></span></div><a href="#">Fala comigo</a></div>
+  <h1>Sou de Maputo.<span>Vivo em Lisboa.</span></h1>
+  <p class="lede">Passei a vida a juntar pessoas, na pista e nas festas que criei. Agora construo as coisas que eu próprio precisava.</p>
+  <div class="ano">MARGINAL, MAPUTO · 1996</div>
+  <div class="horizonte"></div>
+  <div class="rotulo">D · Zodiak + Satoshi</div>
+</section>
+</body>
+</html>

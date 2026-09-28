@@ -46,11 +46,14 @@ Referências gerais em `.claude/skills/site/references/estado-da-arte.md` e `sit
 7. Quem volta ao site entra por outro capítulo.
 8. Cada momento com URL próprio (`/maputo/1996`) e o conteúdo todo também em texto.
 
-## Direcção escolhida
-- Motif:
-- Fio contínuo:
-- O pico:
-- Técnica nova estreada neste site:
+## Direcção escolhida (28 Set 2026)
+**A 1, "Da Marginal ao Cais", com os dois céus e o nome a mudar da 3.** Detalhe completo em `docs/direccoes/DIRECCOES.md`; quadros em `docs/direccoes/direccao-*.jpg`.
+- Motif: a linha de água. A Marginal de Maputo (Índico) e o Cais do Sodré (Tejo). Fotografia documental com a luz do fim do dia.
+- Fio contínuo: a linha do horizonte, sempre à mesma altura do ecrã: mar, asa do avião, Tejo, linha das cabeças na pista (vira onda sonora), cursor numa linha de código.
+- A pessoa: o Yuri recortado de fotos reais, ao centro. De costas no início, de frente no fim.
+- O pico: voo contínuo de 30 s conduzido pelo scroll, da Marginal ao anoitecer até dentro de um armazém no Cais cheio de gente (Wan 3.0 num só plano, sequência de frames em canvas).
+- Da direcção 3: **os dois céus** (hora e tempo reais de Maputo e de Lisboa, no topo) e **o nome a mudar** por capítulo (dagotinho, WhyViiDee, Dagô, Yuri Dagot), com o nome real sempre como âncora.
+- Técnica nova estreada neste site: sequência de frames em canvas e voo contínuo gerado.
 
 ### Actos
 | # | Acto | Fundo | Verbo | Frame sem animações |
