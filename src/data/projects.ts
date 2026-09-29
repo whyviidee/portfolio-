@@ -16,6 +16,27 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: "djs-para-eventos",
+    title: "DJs Para Eventos",
+    type: "Site, escritório e app",
+    year: 2026,
+    liveUrl: "https://djsparaeventos.pt",
+    resumo: "A minha agência de DJs para casamentos e eventos, com o João Nero. Site, escritório e app dos DJs na App Store.",
+    longDescription:
+      "Uma agência de DJs para casamentos e eventos, feita com o João Nero: uma carteira fechada de DJs de confiança e tudo o que a faz andar, do site onde se pede proposta ao escritório onde gerimos cada pedido e à app onde os DJs acompanham as festas.",
+    tech: ["HTML", "JavaScript", "Supabase", "PostgreSQL", "Expo", "React Native", "Vercel"],
+    problem:
+      "O Nero tinha um site parado, os pedidos chegavam por email e perdiam-se. Não havia onde ver o estado de cada festa nem como dividir o trabalho entre os DJs.",
+    solution:
+      "Um site para pedir proposta, um escritório onde cada pedido tem dono, estado e proposta, e uma app para os DJs verem as festas e o que falta para cada uma.",
+    result: "No ar em djsparaeventos.pt, com a carteira de DJs, e a app dos DJs na App Store desde Setembro de 2026.",
+    highlights: [
+      { label: "No ar", value: "2026" },
+      { label: "App Store", value: "Set 2026" },
+      { label: "Com", value: "João Nero" },
+    ],
+  },
+  {
     slug: "agendadj",
     title: "AgendaDJ",
     type: "App móvel",

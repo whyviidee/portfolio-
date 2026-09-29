@@ -98,3 +98,11 @@ Registo detalhado em `assets/PROMPTS.md`.
 - No ar desde 29 Set 2026 em https://www.dagotinho.pt (o `master` no GitHub avançou para o ramo `redesign/historia`). O `master` local desta máquina é uma cópia velha com um commit antigo por publicar ("feat: portefolio interactivo"): não usar, trabalhar no ramo ou fazer reset ao `origin/master` com o sim do Yuri.
 - Por decidir com o Yuri: o que ele "não sente" no site (disse-o ao ver só as fotografias, antes de o voo andar no PC dele); voo em 1080p (2400 créditos).
 - 29 Set 2026: o Yuri confirmou que voltou ao código no início de 2025 (por volta de Janeiro, quando saíram o Claude Code e o Codex); o Presenças Professor passou de 2024 para 2025.
+
+## Estrutura nova (30 Set 2026, aprovada pelo Yuri)
+
+1. Vida (Vida.tsx): o voo do segundo 0 ao 40, do miúdo na Marginal ao Tejo ao nascer do sol; 4 paragens com texto e fotos reais; aterragens em fotos reais dele (Fiesta Dura, Rock in Rio) limpas, com o texto na aproximação; acaba com "E agora construo as coisas de que eu próprio precisava".
+2. Construir (Construir.tsx): 3 projectos contados, um de cada tipo (DJs Para Eventos, o negócio dele; IKA Dogwear, um cliente; Library DJ, um produto dele), com o site real a correr numa janela de browser (gravado a 30 Set); os outros num índice.
+3. Fim (Fim.tsx): o voo retoma do Tejo e aterra nele de frente à beira-mar, com "Fala comigo" e o email. A foto dele aparece uma só vez. Sai o carril de cartões e a secção de frente repetida.
+- Motor comum (Voo.tsx): imagem nítida por cima do vídeo em cada paragem; troços "congelados" antes das fotos reais, porque o vídeo inventa uma pessoa parecida com ele nos últimos segundos (Rock in Rio 32,25 a 34 s; mar 43 a 46 s).
+- Tom: humilde, pés na terra (pedido dele). "Do Coliseu ao Rock in Rio" passou a "Palcos que eu via da pista".

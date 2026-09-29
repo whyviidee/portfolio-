@@ -4,122 +4,78 @@ import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { anunciarCapitulo } from "./capitulo";
 
-type Foto = { src: string; alt: string; legenda: string; w: number; h: number };
-type Paragem = { lugar: string; titulo: React.ReactNode; texto: string; fotos: Foto[]; fundo: string };
+// O motor do voo: um canvas preso ao ecrã desenha o vídeo frame a frame conforme o scroll.
+// O mesmo vídeo (46 s) serve duas cenas: a vida (Vida.tsx) e o fim (Fim.tsx), cada uma com o seu troço.
 
-const PARAGENS: Paragem[] = [
-  {
-    lugar: "Maputo · 1996 a 2014",
-    titulo: "Cresci à beira do Índico.",
-    texto:
-      "Na Escola Portuguesa de Moçambique era guarda-redes da equipa de futsal e fazia as festas da escola. Tinha 15 anos quando o meu irmão chegou da Cidade do Cabo com um controlador de DJ. Aprendi quase tudo sozinho, no quarto, de fones, com o controlador em cima da cama e a minha mãe a mandar-me dormir porque no dia seguinte havia escola.",
-    fotos: [{ src: "/fotos/maputo-piscina.webp", alt: "O Yuri em criança, dentro de uma piscina em Maputo", legenda: "Maputo, em criança", w: 1715, h: 1645 }],
-    fundo: "/voo/paragem-1.webp",
-  },
-  {
-    lugar: "Lisboa · 2014",
-    titulo: "Vim estudar. Fiquei a tocar.",
-    texto:
-      "Entrei em Engenharia Informática. Uma festa Erasmus deu numa residência semanal, a tocar como WhyViiDee, o nome que já trazia de Maputo, feito das minhas iniciais: Y, V, D. Na ESN Lisboa fui RP e o DJ de todas as festas.",
-    fotos: [{ src: "/fotos/setup-2018.webp", alt: "O Yuri a sorrir atrás do setup de DJ, em casa, com um flamingo insuflável", legenda: "O setup em casa, 2018", w: 1400, h: 1400 }],
-    fundo: "/voo/paragem-2.webp",
-  },
-  {
-    lugar: "Cais do Sodré · a noite",
-    titulo: (
-      <>
-        Escolhi a pista.{" "}
-        <span>É lá que sou mais feliz.</span>
-      </>
-    ),
-    texto:
-      "Comecei nas residências do Copenhagen, no Cais do Sodré, e foi aí que conheci a malta da noite. Criei a Vibez com o Kaombo e o Dilemma Club. Em 2020 decidi viver da música, mas a pandemia fechou a noite: continuei a trabalhar à distância e, quando tudo reabriu, em 2021, apostei a tempo inteiro. O WhyViiDee passou a Dagô, e hoje toco nas festas da GRVVE e nos espectáculos da New Sheet.",
-    fotos: [
-      { src: "/fotos/cais-denon-2017.webp", alt: "O Yuri de braço no ar a tocar numa Denon, num clube escuro", legenda: "A noite a crescer, 2017", w: 851, h: 910 },
-      { src: "/fotos/cais-esn-2017.webp", alt: "O Yuri de headphones a tocar numa festa da ESN", legenda: "Uma festa da ESN, 2017", w: 1068, h: 712 },
-    ],
-    fundo: "/voo/paragem-3.webp",
-  },
-  {
-    lugar: "Os palcos grandes",
-    titulo: (
-      <>
-        Do Coliseu{" "}
-        <span>ao Rock in Rio.</span>
-      </>
-    ),
-    texto:
-      "Abri o concerto do Danny Ocean no Coliseu e toquei no palco BacanaPlay do Rock in Rio 2026. Em 2022 estava na equipa de DJs da ESN Sea Battle, o cruzeiro que bateu três recordes do Guinness.",
-    fotos: [{ src: "/fotos/rock-in-rio-palco.webp", alt: "O palco BacanaPlay cheio de gente no Rock in Rio", legenda: "Palco BacanaPlay, Rock in Rio 2026", w: 2200, h: 1467 }],
-    fundo: "/voo/paragem-4.webp",
-  },
-];
-
-// Onde o voo está (0 a 1 do vídeo) para cada ponto do scroll (0 a 1 da pista): voa, pára numa paragem, volta a voar.
-// O vídeo tem 46 s. O texto das paragens 1 e 2 aparece no quarto (6 s) e em Lisboa (13 s); o das paragens 3 e 4
-// aparece na aproximação (o terraço do Cais do Gás, 21 s, e o festival visto de cima, 31 s) e sai antes de o voo
-// aterrar nas fotos reais dele (Fiesta Dura, 27 s, e Rock in Rio, 34 s), para a aterragem ficar limpa. Acaba no mar, aos 46.
-const TRAJECTO: [number, number][] = [
-  [0, 0], [0.04, 0],
-  [0.11, 6 / 46], [0.19, 6 / 46],
-  [0.26, 13 / 46], [0.33, 13 / 46],
-  [0.43, 21 / 46], [0.5, 21 / 46],
-  [0.56, 27 / 46], [0.6, 27 / 46],
-  [0.66, 31 / 46], [0.72, 31 / 46],
-  [0.77, 34 / 46], [0.81, 34 / 46],
-  [0.95, 1], [1, 1],
-];
-const JANELAS: [number, number][] = [[0.105, 0.195], [0.255, 0.335], [0.425, 0.505], [0.655, 0.725]];
-
-// As imagens originais de cada paragem (o segundo do vídeo em que o voo pousa nelas). Quando o voo está parado
-// numa delas, a imagem nítida fica por cima do vídeo, que é mais mole por ser vídeo e estar esticado.
-const NITIDAS = [0, 6, 13, 21, 27, 34, 46].map((s) => ({ s, src: `/voo/nitida-${String(s).padStart(2, "0")}.webp` }));
 const DURACAO = 46;
+// As imagens originais onde o voo pousa (o segundo do vídeo): parado numa delas, a imagem nítida fica
+// por cima do vídeo, que é mais mole por ser vídeo e estar esticado.
+// Nas fotos reais dele a imagem nítida entra mais cedo (segundos de avanço): nos últimos segundos antes de aterrar,
+// o vídeo inventa uma pessoa parecida, e ele pediu sempre a foto verdadeira.
+const NITIDAS: [number, number][] = [[0, 0.35], [6, 0.35], [13, 0.35], [21, 0.35], [27, 1.2], [34, 1.75], [40, 0.35], [46, 3]];
+
+export type ParagemVoo = { classe: string; fundo: string; conteudo: React.ReactNode };
+
+type Props = {
+  rotulo: string;
+  // [ponto do scroll de 0 a 1, segundo do vídeo]: voa entre pontos, pára onde o segundo se repete
+  trajecto: [number, number][];
+  // quando cada paragem aparece e desaparece, em fracção do scroll
+  janelas: [number, number][];
+  paragens: ParagemVoo[];
+  // o nome na navegação: [até que ponto do scroll, capítulo]; depois do fim da pista vale o último
+  capitulos: [number, number][];
+  altura: string;
+  inicio: string;
+  // troços [de, até] em segundos em que o vídeo fica parado no primeiro segundo e só a foto real entra por cima,
+  // em dissolvência: é onde o vídeo, a chegar a uma foto dele, inventa uma pessoa parecida
+  congelar?: [number, number][];
+  abertura?: React.ReactNode;
+  ancora?: string;
+};
 
 const suave = (x: number) => x * x * x * (x * (x * 6 - 15) + 10);
 const passo = (a: number, b: number, x: number) => Math.min(1, Math.max(0, (x - a) / (b - a)));
 
-function tempoDoVideo(p: number) {
-  for (let i = 1; i < TRAJECTO.length; i++) {
-    const [p0, t0] = TRAJECTO[i - 1], [p1, t1] = TRAJECTO[i];
-    if (p <= p1) return t0 + (t1 - t0) * suave(passo(p0, p1, p));
-  }
-  return 1;
-}
-
-export default function Voo() {
+export default function Voo({ rotulo, trajecto, janelas, paragens, capitulos, altura, inicio, congelar = [], abertura, ancora }: Props) {
   const raiz = useRef<HTMLElement>(null);
+  const segundos = trajecto.map(([, s]) => s);
+  const sMin = Math.min(...segundos), sMax = Math.max(...segundos);
+  const nitidas = NITIDAS.filter(([s]) => s >= sMin && s <= sMax);
 
   useEffect(() => {
     const el = raiz.current!;
-    const paragens = [...el.querySelectorAll<HTMLElement>(".paragem")];
-    const abre = el.querySelector<HTMLElement>(".voo-abre")!;
+    const artigos = [...el.querySelectorAll<HTMLElement>(".paragem")];
+    const abre = el.querySelector<HTMLElement>(".voo-abre");
     // O voo anda sempre com o scroll, mesmo com as animações do sistema desligadas: é quem visita que o conduz.
     // (Sem JavaScript, as páginas paradas do HTML continuam a contar a história.)
     el.classList.add("mexe");
     const movel = innerWidth < 700;
     const pasta = movel ? "/voo/m" : "/voo/d";
     const TOTAL = movel ? 184 : 230;
+    const frame = (s: number) => (s / DURACAO) * (TOTAL - 1);
+    const i0 = Math.max(0, Math.floor(frame(sMin))), i1 = Math.min(TOTAL - 1, Math.ceil(frame(sMax)));
+    const noVideo = (s: number) => { const c = congelar.find(([de, ate]) => s > de && s <= ate); return c ? c[0] : s; };
     const tela = el.querySelector<HTMLCanvasElement>(".voo-tela")!;
-    const nitidas = [...el.querySelectorAll<HTMLElement>(".voo-nitida")];
+    const imgsNitidas = [...el.querySelectorAll<HTMLElement>(".voo-nitida")];
     const ctx = tela.getContext("2d")!;
     const pista = el.querySelector<HTMLElement>(".voo-pista")!;
     const frames: HTMLImageElement[] = new Array(TOTAL);
     const prontas = new Set<HTMLImageElement>(); // só entra aqui depois de descodificada: desenhá-la já não engasga
     const url = (i: number) => `${pasta}/f_${String(i + 1).padStart(4, "0")}.webp`;
     const carregar = (i: number) => {
-      if (i < 0 || i >= TOTAL || frames[i]) return;
+      if (i < i0 || i > i1 || frames[i]) return;
       const img = new window.Image();
       img.decoding = "async";
       img.src = url(i);
       img.decode().then(() => prontas.add(img), () => {});
       frames[i] = img;
     };
-    for (let i = 0; i < TOTAL; i += 8) carregar(i); // um esqueleto primeiro, para o scroll rápido ter sempre imagem
-    let k = 0;
+    for (let i = i0; i <= i1; i += 8) carregar(i); // um esqueleto primeiro, para o scroll rápido ter sempre imagem
+    let k = i0;
     const encher = () => {
-      for (let n = 0; n < 10 && k < TOTAL; n++, k++) carregar(k);
-      if (k < TOTAL) timer = window.setTimeout(encher, 60);
+      for (let n = 0; n < 10 && k <= i1; n++, k++) carregar(k);
+      if (k <= i1) timer = window.setTimeout(encher, 60);
     };
     let timer = window.setTimeout(encher, 300);
 
@@ -133,7 +89,7 @@ export default function Voo() {
     // f é a posição no vídeo em frames, com casas decimais: entre dois frames funde-se um no outro,
     // para o scroll lento não andar aos saltos (o vídeo tem poucos frames por segundo)
     const desenhar = (f: number) => {
-      const i = Math.floor(f), a = f - i, A = frames[i], B = frames[Math.min(i + 1, TOTAL - 1)];
+      const i = Math.floor(f), a = f - i, A = frames[i], B = frames[Math.min(i + 1, i1)];
       if (pronta(A) && pronta(B)) {
         pintar(A, 1);
         if (a > 0.02) pintar(B, a);
@@ -149,8 +105,16 @@ export default function Voo() {
       return false;
     };
 
+    const segundoDoVideo = (p: number) => {
+      for (let i = 1; i < trajecto.length; i++) {
+        const [p0, s0] = trajecto[i - 1], [p1, s1] = trajecto[i];
+        if (p <= p1) return s0 + (s1 - s0) * suave(passo(p0, p1, p));
+      }
+      return trajecto[trajecto.length - 1][1];
+    };
+
     // As medidas lêem-se no scroll e no resize, nunca dentro do laço: ler o layout depois de mexer em estilos engasga o browser
-    let alvo = 0, mostrado = 0, fim = false, capitulo = -1, raf = 0, visivel = true, antes = 0, ultimo = -1, exacto = false;
+    let alvo = 0, mostrado = 0, fim = false, cap = -1, raf = 0, visivel = true, antes = 0, ultimo = -1, exacto = false;
     const aoScroll = () => {
       const r = pista.getBoundingClientRect();
       alvo = Math.min(1, Math.max(0, -r.top / (r.height - innerHeight)));
@@ -175,26 +139,29 @@ export default function Voo() {
       mostrado += (alvo - mostrado) * (1 - Math.exp(-dt / 0.13));
       if (Math.abs(alvo - mostrado) < 1e-5) mostrado = alvo;
       // parado, pousa num frame inteiro; a fundir dois frames só enquanto se mexe
-      const tempo = tempoDoVideo(mostrado), parado = mostrado === alvo;
-      const f = parado ? Math.round(tempo * (TOTAL - 1)) : tempo * (TOTAL - 1);
+      const segundo = segundoDoVideo(mostrado), parado = mostrado === alvo;
+      const sv = noVideo(segundo);
+      const f = parado ? Math.round(frame(sv)) : frame(sv);
       if (!exacto || Math.abs(f - ultimo) > 0.003) { exacto = desenhar(f); ultimo = f; }
-      const segundo = tempo * DURACAO;
-      nitidas.forEach((img, k) => { img.style.opacity = String(Math.max(0, 1 - Math.abs(segundo - NITIDAS[k].s) / 0.35)); });
+      imgsNitidas.forEach((img, n) => {
+        const [s, avanco] = nitidas[n];
+        img.style.opacity = String(Math.max(0, segundo < s ? 1 - (s - segundo) / avanco : 1 - (segundo - s) / 0.35));
+      });
 
-      const saida = suave(passo(0.02, 0.1, mostrado));
-      abre.style.opacity = String(1 - saida);
-      abre.style.transform = `translateY(${-28 * saida}px)`;
-
-      let activa = mostrado < 0.22 ? 0 : mostrado < 0.4 ? 1 : 2;
-      paragens.forEach((p, n) => {
-        const [a, b] = JANELAS[n];
+      if (abre) {
+        const saida = suave(passo(0.02, 0.1, mostrado));
+        abre.style.opacity = String(1 - saida);
+        abre.style.transform = `translateY(${-28 * saida}px)`;
+      }
+      artigos.forEach((p, n) => {
+        const [a, b] = janelas[n];
         const v = suave(passo(a, a + 0.03, mostrado)) * (1 - suave(passo(b - 0.03, b, mostrado)));
         p.style.opacity = String(v);
         p.style.transform = `translateY(${(1 - v) * 24}px)`;
         p.style.pointerEvents = v > 0.5 ? "auto" : "none";
       });
-      if (fim) activa = 3;
-      if (activa !== capitulo) { capitulo = activa; anunciarCapitulo(activa); }
+      const activo = fim ? capitulos[capitulos.length - 1][1] : (capitulos.find(([ate]) => mostrado < ate) ?? capitulos[capitulos.length - 1])[1];
+      if (activo !== cap) { cap = activo; anunciarCapitulo(activo); }
       raf = visivel ? requestAnimationFrame(laco) : 0;
     };
     raf = requestAnimationFrame(laco);
@@ -212,43 +179,27 @@ export default function Voo() {
       removeEventListener("scroll", aoScroll);
       removeEventListener("resize", ajustar);
     };
+    // o trajecto e as janelas são constantes de cada cena
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <section ref={raiz} className="voo" aria-label="Da Marginal de Maputo ao Cais do Sodré">
-      <div className="voo-pista">
+    <section ref={raiz} className="voo" aria-label={rotulo}>
+      <div className="voo-pista" style={{ "--altura": altura } as React.CSSProperties}>
         <div className="voo-palco">
-          <div className="voo-inicio" style={{ backgroundImage: "url(/voo/inicio.webp)" }} aria-hidden="true" />
+          <div className="voo-inicio" style={{ backgroundImage: `url(${inicio})` }} aria-hidden="true" />
           <canvas className="voo-tela" aria-hidden="true" />
-          {NITIDAS.map((n) => (
-            <Image key={n.s} className="voo-nitida" src={n.src} alt="" aria-hidden="true" fill sizes="100vw" unoptimized />
+          {nitidas.map(([s]) => (
+            <Image key={s} className="voo-nitida" src={`/voo/nitida-${String(s).padStart(2, "0")}.webp`} alt="" aria-hidden="true" fill sizes="100vw" unoptimized />
           ))}
-          <div className="voo-abre">
-            <h1>
-              Sou de Maputo.{" "}
-              <span>Vivo em Lisboa.</span>
-            </h1>
-            <p>Passei a vida a juntar pessoas, na pista e nas festas que criei. Agora construo as coisas de que eu próprio precisava.</p>
-            <span className="voo-sitio">Marginal, Maputo</span>
-          </div>
-          {PARAGENS.map((p, n) => (
-            <article key={n} className={`paragem paragem-${n + 1}`} style={{ "--fundo": `url(${p.fundo})` } as React.CSSProperties}>
-              <div className="paragem-texto">
-                <span className="paragem-lugar">{p.lugar}</span>
-                <h2>{p.titulo}</h2>
-                <p>{p.texto}</p>
-              </div>
-              <div className="paragem-fotos">
-                {p.fotos.map((f) => (
-                  <figure key={f.src}>
-                    <Image src={f.src} alt={f.alt} width={f.w} height={f.h} sizes="(max-width: 700px) 62vw, 34vw" />
-                    <figcaption>{f.legenda}</figcaption>
-                  </figure>
-                ))}
-              </div>
+          {abertura && <div className="voo-abre">{abertura}</div>}
+          {paragens.map((p, n) => (
+            <article key={n} className={`paragem ${p.classe}`} style={{ "--fundo": `url(${p.fundo})` } as React.CSSProperties}>
+              {p.conteudo}
             </article>
           ))}
         </div>
+        {ancora && <div id={ancora} className="voo-ancora" aria-hidden="true" />}
       </div>
     </section>
   );

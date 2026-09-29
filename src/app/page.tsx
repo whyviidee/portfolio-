@@ -1,13 +1,13 @@
-import Voo from "@/components/historia/Voo";
-import Ecra from "@/components/historia/Ecra";
-import DeFrente from "@/components/historia/DeFrente";
+import Vida from "@/components/historia/Vida";
+import Construir from "@/components/historia/Construir";
+import Fim from "@/components/historia/Fim";
 
 export default function Home() {
   return (
     <main>
-      <Voo />
-      <Ecra />
-      <DeFrente />
+      <Vida />
+      <Construir />
+      <Fim />
     </main>
   );
 }
