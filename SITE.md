@@ -106,3 +106,6 @@ Registo detalhado em `assets/PROMPTS.md`.
 3. Fim (Fim.tsx): o voo retoma do Tejo e aterra nele de frente à beira-mar, com "Fala comigo" e o email. A foto dele aparece uma só vez. Sai o carril de cartões e a secção de frente repetida.
 - Motor comum (Voo.tsx): imagem nítida por cima do vídeo em cada paragem; troços "congelados" antes das fotos reais, porque o vídeo inventa uma pessoa parecida com ele nos últimos segundos (Rock in Rio 32,25 a 34 s; mar 43 a 46 s).
 - Tom: humilde, pés na terra (pedido dele). "Do Coliseu ao Rock in Rio" passou a "Palcos que eu via da pista".
+
+## No ar (30 Set 2026)
+- www.dagotinho.pt passou a ter a versão nova (commit d02daee): o voo de 46 s com fotos reais, os 3 projectos contados, o fim à beira-mar, sem barra de rodapé. Publicado com o sim do Yuri.
