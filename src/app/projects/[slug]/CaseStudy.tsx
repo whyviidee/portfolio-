@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Rodape from "@/components/historia/Rodape";
 import { projects, type Project } from "@/data/projects";
 
 function vizinhos(slug: string) {
@@ -64,6 +65,7 @@ export default function CaseStudy({ project: p }: { project: Project }) {
           {depois.title}
         </Link>
       </nav>
+      <Rodape />
     </main>
   );
 }

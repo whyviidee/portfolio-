@@ -1,4 +1,5 @@
 import Voo, { type ParagemVoo } from "./Voo";
+import { Ligacoes } from "./Rodape";
 
 // O fim fecha o círculo: o site abre com ele em miúdo, de costas, a olhar o Índico; acaba com ele hoje, de frente, à beira-mar.
 // O voo retoma do Tejo ao nascer do sol (segundo 40) e voa sobre a água até ao 43; daí a foto real dele entra
@@ -8,20 +9,21 @@ const PARAGENS: ParagemVoo[] = [
     classe: "paragem-fim",
     fundo: "/voo/nitida-46.webp",
     conteudo: (
-      <div className="fim-texto">
-        <span className="paragem-lugar">E tu?</span>
-        <h2>Fala comigo.</h2>
-        <a className="fim-email" href="mailto:ydagot@gmail.com">
-          ydagot@gmail.com
-        </a>
-        <p className="fim-outros">
-          Para eventos: <a href="mailto:booking.djdago@gmail.com">booking.djdago@gmail.com</a>
-          <span aria-hidden="true"> · </span>
-          <a href="https://instagram.com/deejay.dago" target="_blank" rel="noopener noreferrer">
-            Instagram
+      <>
+        <div className="fim-texto">
+          <span className="paragem-lugar">E tu?</span>
+          <h2>Fala comigo.</h2>
+          <a className="fim-email" href="mailto:ydagot@gmail.com">
+            ydagot@gmail.com
           </a>
-        </p>
-      </div>
+          <p className="fim-outros">
+            Para eventos: <a href="mailto:booking.djdago@gmail.com">booking.djdago@gmail.com</a>
+          </p>
+        </div>
+        <footer className="fim-rodape">
+          <Ligacoes />
+        </footer>
+      </>
     ),
   },
 ];

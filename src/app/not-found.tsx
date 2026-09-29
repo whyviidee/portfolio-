@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Rodape from "@/components/historia/Rodape";
 
 export default function NotFound() {
   return (
@@ -7,6 +8,7 @@ export default function NotFound() {
       <h1>Esta página não existe.</h1>
       <p>Mas a história continua na página principal.</p>
       <Link href="/" className="nav-fala">Voltar ao início</Link>
+      <Rodape />
     </main>
   );
 }

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Rodape from "@/components/historia/Rodape";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
@@ -88,6 +89,7 @@ export default function PrivacyPage() {
           </a>
         </p>
       </section>
+      <Rodape />
     </main>
   );
 }

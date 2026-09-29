@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Navegacao from "@/components/historia/Navegacao";
-import Rodape from "@/components/historia/Rodape";
 import { SITE_URL } from "@/data/site";
 
 const DESCRICAO =
@@ -71,7 +70,6 @@ export default function RootLayout({
       <body>
         <Navegacao />
         {children}
-        <Rodape />
       </body>
     </html>
   );
