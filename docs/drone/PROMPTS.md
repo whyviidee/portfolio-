@@ -126,3 +126,27 @@ Total ~6 300 de 7 900 aprovados.
 - 29 Set, imagem 1 (Marginal), 2 versões, ~80 créditos: o Yuri: "o miúdo parece mesmo eu". Escolhida a versão B (luz mais quente, drone baixo atrás dele, dá para subir no vídeo). OpenArt: resource `WdS1vEirw9D3YGyZBDCA`. Nota: a versão A punha o miúdo de lado, virado para o passeio.
 - 29 Set, imagens 2 a 6, 2 versões cada, ~400 créditos, com a imagem 1 como referência de cor e realismo. Histories: 2 `gVkHSeZlJOw8uWdptXNf`, 3 `wHUKeaSNEpGM5Kc67AmF`, 4 `bV3dXL8NKETBuGHPffDj`, 5 `k4EWArtyTY1dUzRoAnml`, 6 `ro5DQbPpEeuv3BXEIBqX`.
 - 29 Set: o Yuri: o homem sentado no Cais "não tem nada a ver comigo", pediu melhores referências. Erro meu: descrevi-o "alto e largo"; nas fotos é magro e atlético, barba curta, óculos escuros finos muitas vezes. Carregadas 7 fotos recentes do Instagram dele (`hoje-corpo-rosa/porta/rua`, `hoje-cara`, `hoje-cabine-1/2`, `hoje-bracos`). Refeitas a 6 (mesma cena, só troca o homem) e a 5 (ele de perto a tocar, pedido dele: "quero eu hoje em dia a tocar mesmo"). Histories: 6 `bItaKuqxPaMpGijdaI6P`, 5 `lUMOZetFtY1mGXRqKXtI`.
+
+## Método novo (30 Set 2026, aprovado pelo Yuri)
+
+O Yuri adulto gerado nunca pareceu ele. Agora:
+- A AI faz só os lugares e o movimento da câmara (Codex `$imagegen` primeiro, para poupar créditos OpenArt; OpenArt só para o vídeo).
+- Ele entra sempre por fotos reais: cada paragem acaba numa foto verdadeira dele, em ecrã inteiro. O vídeo entre paragens vai de uma imagem à seguinte (primeiro e último frame).
+- As fotos reais que não são 16:9 levam os lados preenchidos pela AI, e no fim os píxeis originais voltam a ser colados por cima: a cara nunca muda.
+- "Usa várias" (o Yuri): o voo aterra numa foto, e as outras da mesma época aparecem no capítulo.
+
+Paragens:
+1. Marginal, miúdo de costas: a imagem gerada 1B (aprovada, "parece mesmo eu").
+2. O quarto aos 15: a gerada 2A (a mãe na luz do corredor); sem fotos reais dessa idade. Confirmar com ele.
+3. Place e Erasmus (2016): aterra na 158 (a tocar no Place); aparecem a 160 e a 143.
+4. O Cais, WhyViiDee (2017 e 2018): aterra na 149 (braço no ar na Denon); aparecem a 150, 153, 136 e 140.
+5. Hoje a tocar: foto real recente (Rock in Rio 2026 ou as do Instagram de 2025/26); o Google Fotos tem vídeos dele a tocar em Set 2026.
+6. O fim: a foto real à beira-mar, de frente (o site abre com ele miúdo de costas para o mar e fecha com ele de frente).
+
+Números das fotos = posição no Instagram @deejay.dago a 30 Set 2026 (1 = mais recente). Ficheiros em scratchpad/drone/era e scratchpad/drone/ig.
+- 30 Set: Codex `$imagegen` (gpt-image-2, pelo plano ChatGPT, zero créditos OpenArt) preencheu os lados das fotos reais 158, 149, Rock in Rio e mar, e tirou as figuras inventadas de 3B, 4B e 6B. Resultado natural, sem costuras; os píxeis originais foram colados por cima. Script em scratchpad/drone/era (outpaint.py, limpar.py).
+- 30 Set: o Yuri aprovou as 10 imagens do voo. Troço de teste 3 para 4 (Lisboa de noite a aterrar no Place): Wan 3.0 standard 720p 6 s, 240 créditos, history `573vT8qeQUAeBKQ1vKNX`.
+- 30 Set: o Yuri recusou o troço do Place ("puxa para um sítio que não faz sentido ser a discoteca") e a foto do Place ("é antiga, quero uma recente"). Pediu referências reais do Google Maps/Street View do Cais do Sodré e uma festa a acontecer, música latina. Escolheu o Tokyo (Cais do Gás). Novo troço: Lisboa de noite → Cais do Gás à noite (Codex a partir do Street View real, `era/tokyo-noite.png`) → a foto real dele na Fiesta Dura (post 11, Mar 2026, `era/fiesta-final.png`). 2 × 240 créditos (720p). Histories `DNuzhlMTTsKivYrIQHbZ`, `mr1A7neRGQ6xuID61R8n`. Nota: o Codex recusa gerar com duas imagens de referência (pede OPENAI_API_KEY); com uma só imagem a editar funciona.
+- 30 Set: o Yuri aprovou o voo final ("avança com o resto"). 7 troços em Wan 3.0 prime 1080p (140 créditos/s, 45 s, ~6 300). Tirado o armazém inventado: da Fiesta Dura voa directo ao Rock in Rio (Parque Tejo). Troços e histories: 1 Marginal→quarto `tcVHFK025svkEnfe65H4`; 2 quarto→Lisboa `48ww7tdqPUkKywoEvRL4`; 3 Lisboa→Tokyo (por submeter); 4 Tokyo→Fiesta `CuFetyBwvopMmOR8ZU52`; 5 Fiesta→Rock in Rio `h7bkbyCMhvH0wsvQaraQ`; 6 Rock in Rio→Tejo (por submeter); 7 Tejo→mar (por submeter). O OpenArt só deixa 4 gerações em paralelo.
+- 30 Set: o Yuri apontou o corte no troço Lisboa→Tokyo (salto do rio para a rua). Causa: a imagem de Lisboa olha para a ponte e o Cais do Gás fica na margem à esquerda, o modelo não tinha caminho. Solução: imagem intermédia (Codex, `era/caisgas-aereo.png`: a mesma margem vista de cima do rio) e dois troços de 4 s em vez de um de 7 s.
+- 30 Set: prontos a 1080p prime: t1 Marginal→quarto, t2 quarto→Lisboa, t5 Tokyo→Fiesta, t6 Fiesta→Rock in Rio, t7 Rock in Rio→Tejo, t8 Tejo→mar (em scratchpad/drone/video/final). Faltam t3 e t4 (Lisboa→Cais do Gás aéreo→Tokyo). O conector OpenArt deixou de aceitar a credencial a meio ("can't be used with the current credential"); os vídeos gerados pelo conector aparecem no OpenArt Suite (openart.ai/suite/media), não nos Assets antigos. Saldo 7 674 → gastos ~6 760 dos 7 900.

@@ -12,7 +12,7 @@ const PARAGENS: Paragem[] = [
     lugar: "Maputo · 1996 a 2014",
     titulo: "Cresci à beira do Índico.",
     texto:
-      "Na Escola Portuguesa de Moçambique era guarda-redes da equipa de futsal que foi campeã da cidade em 2012, e fazia parte da associação de estudantes. Tinha 15 anos quando o meu irmão chegou da Cidade do Cabo com um controlador de DJ, e nunca mais o larguei.",
+      "Na Escola Portuguesa de Moçambique era guarda-redes da equipa de futsal e fazia as festas da escola. Tinha 15 anos quando o meu irmão chegou da Cidade do Cabo com um controlador de DJ. Aprendi quase tudo sozinho, no quarto, de fones, com o controlador em cima da cama e a minha mãe a mandar-me dormir porque no dia seguinte havia escola.",
     fotos: [{ src: "/fotos/maputo-piscina.webp", alt: "O Yuri em criança, dentro de uma piscina em Maputo", legenda: "Maputo, em criança", w: 1715, h: 1645 }],
     fundo: "/voo/paragem-1.webp",
   },
@@ -25,7 +25,7 @@ const PARAGENS: Paragem[] = [
     fundo: "/voo/paragem-2.webp",
   },
   {
-    lugar: "Cais do Sodré · desde 2020",
+    lugar: "Cais do Sodré · a noite",
     titulo: (
       <>
         Em 2020 escolhi a pista.{" "}
@@ -33,19 +33,43 @@ const PARAGENS: Paragem[] = [
       </>
     ),
     texto:
-      "Hoje sou o Dagô. Toco nas festas da GRVVE e nos espectáculos da New Sheet, abri o concerto do Danny Ocean no Coliseu e toquei no palco BacanaPlay do Rock in Rio 2026. Em 2022 estava na equipa de DJs da ESN Sea Battle, o cruzeiro que bateu três recordes do Guinness.",
+      "Comecei nas residências do Copenhagen, no Cais do Sodré, e foi aí que conheci a malta da noite e o nome começou a crescer. Criei a Vibez com o Kaombo e o Dilemma Club. Em 2021 o WhyViiDee passou a Dagô, e hoje toco nas festas da GRVVE, da SALERO à Fiesta Dura, e nos espectáculos da New Sheet.",
     fotos: [
-      { src: "/fotos/rock-in-rio-cabine.webp", alt: "O Yuri a tocar na cabine, iluminado a vermelho", legenda: "Rock in Rio Lisboa, 2026", w: 1200, h: 1800 },
-      { src: "/fotos/rock-in-rio-palco.webp", alt: "O palco BacanaPlay cheio de gente no Rock in Rio", legenda: "Palco BacanaPlay", w: 2200, h: 1467 },
+      { src: "/fotos/cais-denon-2017.webp", alt: "O Yuri de braço no ar a tocar numa Denon, num clube escuro", legenda: "A noite a crescer, 2017", w: 851, h: 910 },
+      { src: "/fotos/cais-esn-2017.webp", alt: "O Yuri de headphones a tocar numa festa da ESN", legenda: "Uma festa da ESN, 2017", w: 1068, h: 712 },
     ],
     fundo: "/voo/paragem-3.webp",
+  },
+  {
+    lugar: "Os palcos grandes",
+    titulo: (
+      <>
+        Do Coliseu{" "}
+        <span>ao Rock in Rio.</span>
+      </>
+    ),
+    texto:
+      "Abri o concerto do Danny Ocean no Coliseu e toquei no palco BacanaPlay do Rock in Rio 2026. Em 2022 estava na equipa de DJs da ESN Sea Battle, o cruzeiro que bateu três recordes do Guinness.",
+    fotos: [{ src: "/fotos/rock-in-rio-palco.webp", alt: "O palco BacanaPlay cheio de gente no Rock in Rio", legenda: "Palco BacanaPlay, Rock in Rio 2026", w: 2200, h: 1467 }],
+    fundo: "/voo/paragem-4.webp",
   },
 ];
 
 // Onde o voo está (0 a 1 do vídeo) para cada ponto do scroll (0 a 1 da pista): voa, pára numa paragem, volta a voar.
-const TRAJECTO: [number, number][] = [[0, 0], [0.06, 0], [0.16, 0.08], [0.31, 0.08], [0.46, 0.55], [0.61, 0.55], [0.8, 1], [1, 1]];
-// a última janela passa do fim de propósito: a paragem 3 sai inteira, a rolar com o palco
-const JANELAS: [number, number][] = [[0.15, 0.32], [0.45, 0.62], [0.79, 1.2]];
+// O vídeo tem 46 s. O texto das paragens 1 e 2 aparece no quarto (6 s) e em Lisboa (13 s); o das paragens 3 e 4
+// aparece na aproximação (o terraço do Cais do Gás, 21 s, e o festival visto de cima, 31 s) e sai antes de o voo
+// aterrar nas fotos reais dele (Fiesta Dura, 27 s, e Rock in Rio, 34 s), para a aterragem ficar limpa. Acaba no mar, aos 46.
+const TRAJECTO: [number, number][] = [
+  [0, 0], [0.04, 0],
+  [0.11, 6 / 46], [0.19, 6 / 46],
+  [0.26, 13 / 46], [0.33, 13 / 46],
+  [0.43, 21 / 46], [0.5, 21 / 46],
+  [0.56, 27 / 46], [0.6, 27 / 46],
+  [0.66, 31 / 46], [0.72, 31 / 46],
+  [0.77, 34 / 46], [0.81, 34 / 46],
+  [0.95, 1], [1, 1],
+];
+const JANELAS: [number, number][] = [[0.105, 0.195], [0.255, 0.335], [0.425, 0.505], [0.655, 0.725]];
 
 const suave = (x: number) => x * x * x * (x * (x * 6 - 15) + 10);
 const passo = (a: number, b: number, x: number) => Math.min(1, Math.max(0, (x - a) / (b - a)));
@@ -70,7 +94,7 @@ export default function Voo() {
     el.classList.add("mexe");
     const movel = innerWidth < 700;
     const pasta = movel ? "/voo/m" : "/voo/d";
-    const TOTAL = movel ? 133 : 213;
+    const TOTAL = movel ? 184 : 230;
     const tela = el.querySelector<HTMLCanvasElement>(".voo-tela")!;
     const ctx = tela.getContext("2d")!;
     const pista = el.querySelector<HTMLElement>(".voo-pista")!;
@@ -151,7 +175,7 @@ export default function Voo() {
       abre.style.opacity = String(1 - saida);
       abre.style.transform = `translateY(${-28 * saida}px)`;
 
-      let activa = mostrado < 0.38 ? 0 : mostrado < 0.7 ? 1 : 2;
+      let activa = mostrado < 0.22 ? 0 : mostrado < 0.4 ? 1 : 2;
       paragens.forEach((p, n) => {
         const [a, b] = JANELAS[n];
         const v = suave(passo(a, a + 0.03, mostrado)) * (1 - suave(passo(b - 0.03, b, mostrado)));
