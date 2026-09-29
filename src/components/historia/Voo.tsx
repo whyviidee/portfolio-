@@ -28,12 +28,12 @@ const PARAGENS: Paragem[] = [
     lugar: "Cais do Sodré · a noite",
     titulo: (
       <>
-        Em 2020 escolhi a pista.{" "}
+        Escolhi a pista.{" "}
         <span>É lá que sou mais feliz.</span>
       </>
     ),
     texto:
-      "Comecei nas residências do Copenhagen, no Cais do Sodré, e foi aí que conheci a malta da noite e o nome começou a crescer. Criei a Vibez com o Kaombo e o Dilemma Club. Em 2021 o WhyViiDee passou a Dagô, e hoje toco nas festas da GRVVE, da SALERO à Fiesta Dura, e nos espectáculos da New Sheet.",
+      "Comecei nas residências do Copenhagen, no Cais do Sodré, e foi aí que conheci a malta da noite. Criei a Vibez com o Kaombo e o Dilemma Club. Em 2020 decidi viver da música, mas a pandemia fechou a noite: continuei a trabalhar à distância e, quando tudo reabriu, em 2021, apostei a tempo inteiro. O WhyViiDee passou a Dagô, e hoje toco nas festas da GRVVE e nos espectáculos da New Sheet.",
     fotos: [
       { src: "/fotos/cais-denon-2017.webp", alt: "O Yuri de braço no ar a tocar numa Denon, num clube escuro", legenda: "A noite a crescer, 2017", w: 851, h: 910 },
       { src: "/fotos/cais-esn-2017.webp", alt: "O Yuri de headphones a tocar numa festa da ESN", legenda: "Uma festa da ESN, 2017", w: 1068, h: 712 },
@@ -71,6 +71,11 @@ const TRAJECTO: [number, number][] = [
 ];
 const JANELAS: [number, number][] = [[0.105, 0.195], [0.255, 0.335], [0.425, 0.505], [0.655, 0.725]];
 
+// As imagens originais de cada paragem (o segundo do vídeo em que o voo pousa nelas). Quando o voo está parado
+// numa delas, a imagem nítida fica por cima do vídeo, que é mais mole por ser vídeo e estar esticado.
+const NITIDAS = [0, 6, 13, 21, 27, 34, 46].map((s) => ({ s, src: `/voo/nitida-${String(s).padStart(2, "0")}.webp` }));
+const DURACAO = 46;
+
 const suave = (x: number) => x * x * x * (x * (x * 6 - 15) + 10);
 const passo = (a: number, b: number, x: number) => Math.min(1, Math.max(0, (x - a) / (b - a)));
 
@@ -96,6 +101,7 @@ export default function Voo() {
     const pasta = movel ? "/voo/m" : "/voo/d";
     const TOTAL = movel ? 184 : 230;
     const tela = el.querySelector<HTMLCanvasElement>(".voo-tela")!;
+    const nitidas = [...el.querySelectorAll<HTMLElement>(".voo-nitida")];
     const ctx = tela.getContext("2d")!;
     const pista = el.querySelector<HTMLElement>(".voo-pista")!;
     const frames: HTMLImageElement[] = new Array(TOTAL);
@@ -168,8 +174,12 @@ export default function Voo() {
       antes = t;
       mostrado += (alvo - mostrado) * (1 - Math.exp(-dt / 0.13));
       if (Math.abs(alvo - mostrado) < 1e-5) mostrado = alvo;
-      const f = tempoDoVideo(mostrado) * (TOTAL - 1);
+      // parado, pousa num frame inteiro; a fundir dois frames só enquanto se mexe
+      const tempo = tempoDoVideo(mostrado), parado = mostrado === alvo;
+      const f = parado ? Math.round(tempo * (TOTAL - 1)) : tempo * (TOTAL - 1);
       if (!exacto || Math.abs(f - ultimo) > 0.003) { exacto = desenhar(f); ultimo = f; }
+      const segundo = tempo * DURACAO;
+      nitidas.forEach((img, k) => { img.style.opacity = String(Math.max(0, 1 - Math.abs(segundo - NITIDAS[k].s) / 0.35)); });
 
       const saida = suave(passo(0.02, 0.1, mostrado));
       abre.style.opacity = String(1 - saida);
@@ -210,6 +220,9 @@ export default function Voo() {
         <div className="voo-palco">
           <div className="voo-inicio" style={{ backgroundImage: "url(/voo/inicio.webp)" }} aria-hidden="true" />
           <canvas className="voo-tela" aria-hidden="true" />
+          {NITIDAS.map((n) => (
+            <Image key={n.s} className="voo-nitida" src={n.src} alt="" aria-hidden="true" fill sizes="100vw" unoptimized />
+          ))}
           <div className="voo-abre">
             <h1>
               Sou de Maputo.{" "}
