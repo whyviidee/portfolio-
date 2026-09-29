@@ -341,7 +341,7 @@ export const projects: Project[] = [
     slug: "presencas-professor",
     title: "Presenças Professor",
     type: "App web",
-    year: 2024,
+    year: 2025,
     liveUrl: "https://presencasprofessor.pt",
     resumo: "Registo de presenças para uma educadora de infância, simples e rápido para o dia a dia.",
     longDescription:

@@ -96,4 +96,5 @@ Registo detalhado em `assets/PROMPTS.md`.
 
 ## Estado
 - No ar desde 29 Set 2026 em https://www.dagotinho.pt (o `master` no GitHub avançou para o ramo `redesign/historia`). O `master` local desta máquina é uma cópia velha com um commit antigo por publicar ("feat: portefolio interactivo"): não usar, trabalhar no ramo ou fazer reset ao `origin/master` com o sim do Yuri.
-- Por decidir com o Yuri: o que ele "não sente" no site (disse-o ao ver só as fotografias, antes de o voo andar no PC dele); voltou ao código em 2024 ou 2025; voo em 1080p (2400 créditos).
+- Por decidir com o Yuri: o que ele "não sente" no site (disse-o ao ver só as fotografias, antes de o voo andar no PC dele); voo em 1080p (2400 créditos).
+- 29 Set 2026: o Yuri confirmou que voltou ao código no início de 2025 (por volta de Janeiro, quando saíram o Claude Code e o Codex); o Presenças Professor passou de 2024 para 2025.
