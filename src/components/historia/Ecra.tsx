@@ -17,23 +17,24 @@ export default function Ecra() {
     // a secção pode ter milhares de px de altura: conta quando o topo passa o meio do ecrã
     const obs = new IntersectionObserver(([e]) => e.isIntersecting && anunciarCapitulo(3), { rootMargin: "0px 0px -50% 0px" });
     obs.observe(el);
-    const calmo = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     // Carril: a secção prende-se e desliza de lado; a altura acompanha o que há mesmo para deslizar.
     el.classList.add("mexe");
     const pista = el.querySelector<HTMLElement>(".ecra-pista")!;
     const carril = el.querySelector<HTMLElement>(".ecra-carril")!;
     const palco = el.querySelector<HTMLElement>(".ecra-palco")!;
-    let distancia = 0, raf = 0, alvo = 0, mostrado = 0;
+    let distancia = 0, raf = 0, alvo = 0, mostrado = 0, antes = 0;
     // o laço só corre enquanto o carril ainda está a chegar ao sítio
-    const laco = () => {
-      mostrado = calmo ? alvo : mostrado + (alvo - mostrado) * 0.12;
+    const laco = (t: number) => {
+      const dt = antes ? Math.min(0.05, (t - antes) / 1000) : 1 / 60;
+      antes = t;
+      mostrado += (alvo - mostrado) * (1 - Math.exp(-dt / 0.13));
       if (Math.abs(alvo - mostrado) < 1e-4) mostrado = alvo;
       // o carril chega ao fim aos 86% e segura, para dar tempo de ler o último
       carril.style.transform = `translate3d(${-Math.min(1, mostrado / 0.86) * distancia}px,0,0)`;
       raf = mostrado !== alvo ? requestAnimationFrame(laco) : 0;
     };
-    const acordar = () => { if (!raf) raf = requestAnimationFrame(laco); };
+    const acordar = () => { if (!raf) { antes = 0; raf = requestAnimationFrame(laco); } };
     const medir = () => {
       distancia = Math.max(0, carril.scrollWidth - innerWidth);
       pista.style.height = `${innerHeight + distancia * 1.25}px`;

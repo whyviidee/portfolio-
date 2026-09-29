@@ -65,10 +65,8 @@ export default function Voo() {
     const el = raiz.current!;
     const paragens = [...el.querySelectorAll<HTMLElement>(".paragem")];
     const abre = el.querySelector<HTMLElement>(".voo-abre")!;
-    // O voo anda sempre com o scroll: é quem visita que o conduz. Com as animações do sistema desligadas
-    // fica mais calmo: o vídeo acompanha o dedo sem deslizar depois.
+    // O voo anda sempre com o scroll, mesmo com as animações do sistema desligadas: é quem visita que o conduz.
     // (Sem JavaScript, as páginas paradas do HTML continuam a contar a história.)
-    const calmo = matchMedia("(prefers-reduced-motion: reduce)").matches;
     el.classList.add("mexe");
     const movel = innerWidth < 700;
     const pasta = movel ? "/voo/m" : "/voo/d";
@@ -77,12 +75,14 @@ export default function Voo() {
     const ctx = tela.getContext("2d")!;
     const pista = el.querySelector<HTMLElement>(".voo-pista")!;
     const frames: HTMLImageElement[] = new Array(TOTAL);
+    const prontas = new Set<HTMLImageElement>(); // só entra aqui depois de descodificada: desenhá-la já não engasga
     const url = (i: number) => `${pasta}/f_${String(i + 1).padStart(4, "0")}.webp`;
     const carregar = (i: number) => {
       if (i < 0 || i >= TOTAL || frames[i]) return;
       const img = new window.Image();
       img.decoding = "async";
       img.src = url(i);
+      img.decode().then(() => prontas.add(img), () => {});
       frames[i] = img;
     };
     for (let i = 0; i < TOTAL; i += 8) carregar(i); // um esqueleto primeiro, para o scroll rápido ter sempre imagem
@@ -93,42 +93,59 @@ export default function Voo() {
     };
     let timer = window.setTimeout(encher, 300);
 
+    const pronta = (img?: HTMLImageElement): img is HTMLImageElement => !!img && prontas.has(img);
+    const pintar = (img: HTMLImageElement, alfa: number) => {
+      const W = tela.width, H = tela.height, r = Math.max(W / img.naturalWidth, H / img.naturalHeight);
+      const w = img.naturalWidth * r, h = img.naturalHeight * r;
+      ctx.globalAlpha = alfa;
+      ctx.drawImage(img, (W - w) / 2, (H - h) / 2, w, h);
+    };
+    // f é a posição no vídeo em frames, com casas decimais: entre dois frames funde-se um no outro,
+    // para o scroll lento não andar aos saltos (o vídeo tem poucos frames por segundo)
+    const desenhar = (f: number) => {
+      const i = Math.floor(f), a = f - i, A = frames[i], B = frames[Math.min(i + 1, TOTAL - 1)];
+      if (pronta(A) && pronta(B)) {
+        pintar(A, 1);
+        if (a > 0.02) pintar(B, a);
+        ctx.globalAlpha = 1;
+        return true;
+      }
+      const j = Math.round(f);
+      for (let d = 0; d < TOTAL; d++) {
+        const perto = pronta(frames[j - d]) ? frames[j - d] : frames[j + d];
+        if (pronta(perto)) { pintar(perto, 1); break; }
+      }
+      ctx.globalAlpha = 1;
+      return false;
+    };
+
+    // As medidas lêem-se no scroll e no resize, nunca dentro do laço: ler o layout depois de mexer em estilos engasga o browser
+    let alvo = 0, mostrado = 0, fim = false, capitulo = -1, raf = 0, visivel = true, antes = 0, ultimo = -1, exacto = false;
+    const aoScroll = () => {
+      const r = pista.getBoundingClientRect();
+      alvo = Math.min(1, Math.max(0, -r.top / (r.height - innerHeight)));
+      fim = alvo >= 1 && r.bottom < innerHeight * 0.4;
+    };
     const ajustar = () => {
       const dpr = Math.min(devicePixelRatio || 1, 2);
       tela.width = innerWidth * dpr;
       tela.height = innerHeight * dpr;
-      ultimo = -1;
+      exacto = false;
+      aoScroll();
     };
-    let ultimo = -1;
     ajustar();
     addEventListener("resize", ajustar);
-
-    const pronta = (img?: HTMLImageElement) => !!img && img.complete && img.naturalWidth > 0;
-    const desenhar = (i: number) => {
-      let img = frames[i];
-      if (!pronta(img)) {
-        for (let d = 1; d < TOTAL && !pronta(img); d++) img = pronta(frames[i - d]) ? frames[i - d] : frames[i + d];
-      }
-      if (!pronta(img)) return false;
-      const W = tela.width, H = tela.height, r = Math.max(W / img.naturalWidth, H / img.naturalHeight);
-      const w = img.naturalWidth * r, h = img.naturalHeight * r;
-      ctx.drawImage(img, (W - w) / 2, (H - h) / 2, w, h);
-      return img === frames[i];
-    };
-
-    let alvo = 0, mostrado = 0, capitulo = -1, raf = 0, visivel = true;
-    const progresso = () => {
-      const r = pista.getBoundingClientRect();
-      return Math.min(1, Math.max(0, -r.top / (r.height - innerHeight)));
-    };
-    const aoScroll = () => { alvo = progresso(); };
     addEventListener("scroll", aoScroll, { passive: true });
-    alvo = mostrado = progresso();
+    mostrado = alvo;
 
-    const laco = () => {
-      mostrado = calmo ? alvo : mostrado + (alvo - mostrado) * 0.11;
-      const i = Math.round(tempoDoVideo(mostrado) * (TOTAL - 1));
-      if (i !== ultimo && desenhar(i)) ultimo = i;
+    const laco = (t: number) => {
+      // amortecimento medido em tempo, não em frames: igual a 60 Hz e a 144 Hz
+      const dt = antes ? Math.min(0.05, (t - antes) / 1000) : 1 / 60;
+      antes = t;
+      mostrado += (alvo - mostrado) * (1 - Math.exp(-dt / 0.13));
+      if (Math.abs(alvo - mostrado) < 1e-5) mostrado = alvo;
+      const f = tempoDoVideo(mostrado) * (TOTAL - 1);
+      if (!exacto || Math.abs(f - ultimo) > 0.003) { exacto = desenhar(f); ultimo = f; }
 
       const saida = suave(passo(0.02, 0.1, mostrado));
       abre.style.opacity = String(1 - saida);
@@ -142,7 +159,7 @@ export default function Voo() {
         p.style.transform = `translateY(${(1 - v) * 24}px)`;
         p.style.pointerEvents = v > 0.5 ? "auto" : "none";
       });
-      if (progresso() >= 1 && pista.getBoundingClientRect().bottom < innerHeight * 0.4) activa = 3;
+      if (fim) activa = 3;
       if (activa !== capitulo) { capitulo = activa; anunciarCapitulo(activa); }
       raf = visivel ? requestAnimationFrame(laco) : 0;
     };
@@ -150,7 +167,7 @@ export default function Voo() {
     // fora do ecrã o laço pára, e volta quando a secção reaparece
     const vista = new IntersectionObserver(([e]) => {
       visivel = e.isIntersecting;
-      if (visivel && !raf) raf = requestAnimationFrame(laco);
+      if (visivel && !raf) { antes = 0; raf = requestAnimationFrame(laco); }
     });
     vista.observe(el);
 
